@@ -12,5 +12,6 @@ public class Bee extends Agent {
         this.state = new Working(this, options.getCohesionRate());
         this.hp = 5;
         this.heatThreshold = 48;
+        this.attackPoints = 1;
     }
 }

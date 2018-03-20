@@ -8,6 +8,8 @@ import sim.agent.module.Perceptor;
 import sim.agent.state.State;
 import sim.config.Options;
 
+import java.util.Random;
+
 public abstract class Agent implements TickListener {
 
 
@@ -19,6 +21,7 @@ public abstract class Agent implements TickListener {
     Actuator actuator;
     int hp;
     int heatThreshold;
+    int attackPoints;
 
     public Agent(Simulation parent, Coordinate location){
         this.parent = parent;
@@ -52,6 +55,9 @@ public abstract class Agent implements TickListener {
         return this.perceptor;
     }
 
+    public int getHP(){
+        return this.hp;
+    }
     public void setState(State state){
         this.state = state;
     }
@@ -61,6 +67,11 @@ public abstract class Agent implements TickListener {
         if(hp <= 0){
             //die...
         }
+    }
+
+    public int AttackRoll(){
+        return new Random().nextInt(attackPoints) + attackPoints;
+
     }
     @Override
     public void Tick() {

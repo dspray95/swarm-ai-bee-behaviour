@@ -13,6 +13,7 @@ public class Hornet extends Agent {
         this.state = new Hunting(this);
         this.hp = 50;
         this.heatThreshold = 47;
+        this.attackPoints = 3;
     }
 
 }

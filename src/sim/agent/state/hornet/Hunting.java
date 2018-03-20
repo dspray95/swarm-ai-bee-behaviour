@@ -18,6 +18,7 @@ public class Hunting extends State {
      */
     public Hunting(Agent parent) {
         super(parent);
+        System.out.print("STATE: hunting");
     }
 
     /**
