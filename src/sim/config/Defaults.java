@@ -1,0 +1,44 @@
+package sim.config;
+
+import sim.Coordinate;
+
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Defaults {
+
+    public static Coordinate[] VECTORS = {new Coordinate(1,0), //N
+            new Coordinate(1,1),    //NE
+            new Coordinate(0,1),    //E
+            new Coordinate(-1,1),   //SE
+            new Coordinate(-1, 0),  //S
+            new Coordinate(-1, -1), //SW
+            new Coordinate(0, -1),  //W
+            new Coordinate(1, -1),  //NW
+    };
+
+    public static Map<String, Coordinate> CARDINAL_VECTOR = CardinalVector();
+
+    public static Map<String, Coordinate> CardinalVector(){
+        Map map = new HashMap<String, Coordinate>();
+            map.put("NORTH", VECTORS[0]);
+            map.put("NORTHEAST", VECTORS[1]);
+            map.put("EAST", VECTORS[2]);
+            map.put("SOUTHEAST", VECTORS[3]);
+            map.put("SOUTH", VECTORS[4]);
+            map.put("SOUTHWEST", VECTORS[5]);
+            map.put("WEST", VECTORS[6]);
+            map.put("NORTHWEST", VECTORS[7]);
+        return Collections.unmodifiableMap(map);
+
+    }
+
+    public static int SWARM_SIZE = 100;
+    public static int ENVIRONMENT_SIZE = SWARM_SIZE*10;
+    public static int DEPLOYMENT_AREA = ENVIRONMENT_SIZE;
+    public static int PERCEPTION_DISTANCE = 75;
+    public static int HORNET_TARGET_RADIUS = 100;
+    public static int HORNET_TARGET_THRESHOLD = 3;
+    public static int COHESION_RATE = 55;
+}
