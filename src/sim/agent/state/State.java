@@ -30,28 +30,32 @@ public abstract  class State {
         double cardinality;
         Coordinate targetVector;
         //atan2 returns a radian, which is then converted to a degree.
-        angle = Math.toDegrees(Math.atan2(current.Y() - target.Y(), current.X() - target.X())) % 360;
+        double radian = Math.atan2(target.Y() - current.Y(), target.X() - current.X());
+        if(radian < 0){
+            radian = radian + 2*Math.PI;
+        }
+        angle = Math.toDegrees(radian);
         angle += 90;
 
         //NORTH = 270, WEST = 180, EAST = 0, SOUTH = 90
         cardinality = Math.round(angle/45); //break down into the eight cardinal directions used in the model
         switch((int) cardinality){
             case 0:
-                return Defaults.CARDINAL_VECTOR.get("EAST");
-            case 1:
-                return Defaults.CARDINAL_VECTOR.get("SOUTHEAST");
-            case 2:
-                return Defaults.CARDINAL_VECTOR.get("SOUTH");
-            case 3:
-                return Defaults.CARDINAL_VECTOR.get("SOUTHWEST");
-            case 4:
                 return Defaults.CARDINAL_VECTOR.get("WEST");
-            case 5:
+            case 1:
                 return Defaults.CARDINAL_VECTOR.get("NORTHWEST");
-            case 6:
+            case 2:
                 return Defaults.CARDINAL_VECTOR.get("NORTH");
-            case 7:
+            case 3:
                 return Defaults.CARDINAL_VECTOR.get("NORTHEAST");
+            case 4:
+                return Defaults.CARDINAL_VECTOR.get("EAST");
+            case 5:
+                return Defaults.CARDINAL_VECTOR.get("SOUTHEAST");
+            case 6:
+                return Defaults.CARDINAL_VECTOR.get("SOUTH");
+            case 7:
+                return Defaults.CARDINAL_VECTOR.get("SOUTHWEST");
             default:
                 return new Coordinate(0,0);
         }
