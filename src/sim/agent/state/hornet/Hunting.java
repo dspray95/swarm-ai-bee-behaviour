@@ -3,6 +3,7 @@ package sim.agent.state.hornet;
 import sim.Coordinate;
 import sim.agent.Agent;
 import sim.agent.Bee;
+import sim.agent.state.Dead;
 import sim.agent.state.State;
 import sim.config.Defaults;
 
@@ -18,7 +19,7 @@ public class Hunting extends State {
      */
     public Hunting(Agent parent) {
         super(parent);
-        System.out.print("STATE: hunting");
+        System.out.println("STATE: hunting");
     }
 
     /**
@@ -61,7 +62,7 @@ public class Hunting extends State {
         ArrayList<Bee> perceivedBees = parent.getPerceptor().GetPerceivedBees();
         Bee closestBee = GetClosestBee(perceivedBees);
 
-        if(closestBee == null){
+        if(closestBee == null || closestBee.getHP() <= 0){
             return false;
         }
         else{

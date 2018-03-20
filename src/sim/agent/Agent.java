@@ -5,6 +5,7 @@ import sim.Simulation;
 import sim.agent.listener.TickListener;
 import sim.agent.module.Actuator;
 import sim.agent.module.Perceptor;
+import sim.agent.state.Dead;
 import sim.agent.state.State;
 import sim.config.Options;
 
@@ -62,17 +63,24 @@ public abstract class Agent implements TickListener {
         this.state = state;
     }
 
+    public State getState(){
+        return this.state;
+    }
+
     public void Damage(int value){
         this.hp -= value;
+        System.out.println("Attacked for " + value + " damage.");
         if(hp <= 0){
-            //die...
+            System.out.println("Bee killed");
+            this.state = new Dead(this);
         }
+
     }
 
     public int AttackRoll(){
         return new Random().nextInt(attackPoints) + attackPoints;
-
     }
+
     @Override
     public void Tick() {
         boolean gettingNextMove = true;

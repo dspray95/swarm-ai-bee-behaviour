@@ -51,6 +51,16 @@ public class Simulation {
         tickListeners.add(hornet);
     }
 
+    public void RemoveFromSimulation(Agent agent){
+        if(agent.getClass() == Bee.class){
+            Bee bee = swarm.get(swarm.indexOf(agent));
+            bee = null;
+        }
+        else if(agent.getClass() == Hornet.class){
+            hornet = null;
+        }
+    }
+
     public void Tick(){
         for(TickListener listener : tickListeners){
             listener.Tick();

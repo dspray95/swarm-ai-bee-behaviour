@@ -17,9 +17,14 @@ public class Actuator {
 
     public boolean Move(Coordinate target){
 
-        for(Agent agent : parent.getPerceptor().GetPerceivedBees()){
-            if(agent.getLocation().X() == target.X() && agent.getLocation().Y() == target.Y() && parent.getClass() != Hornet.class){
-                return false;
+        if(parent.getHP() <= 0){
+            return true;
+        }
+        else {
+            for (Agent agent : parent.getPerceptor().GetPerceivedBees()) {
+                if (agent.getLocation().X() == target.X() && agent.getLocation().Y() == target.Y() && parent.getClass() != Hornet.class) {
+                    return false;
+                }
             }
         }
 
