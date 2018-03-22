@@ -49,7 +49,11 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception {
         ArrayList<ArrayList<Coordinate>> positions = logger.getPositionList();
+        ArrayList<ArrayList<Boolean>> deadList = logger.getAliveList();
         positions.add(logger.getHornetPositions());
+        ArrayList<Boolean> hornetPositions = new ArrayList<>();
+        hornetPositions.add(false);
+        deadList.add(hornetPositions);
         primaryStage.setTitle("Swarm AI Mobbing - Visualisation");
         Group squares = new Group();
 
@@ -75,23 +79,31 @@ public class Main extends Application {
         Scene scene = new Scene(root, options.getEnvironmentSize(), options.getEnvironmentSize(), Color.BLACK);
         primaryStage.setScene(scene);
         primaryStage.show();
-        ArrayList<PathTransition> anim = pathAnimation(squares, positions);
+        ArrayList<PathTransition> anim = pathAnimation(squares, positions, deadList);
         for(PathTransition pt : anim){
             pt.play();
         }
     }
 
-    public ArrayList<PathTransition> pathAnimation(Group group, ArrayList<ArrayList<Coordinate>> positions){
+    public ArrayList<PathTransition> pathAnimation(Group group, ArrayList<ArrayList<Coordinate>> positions,
+                                                   ArrayList<ArrayList<Boolean>> aliveList){
 
         ArrayList<PathTransition> ptList = new ArrayList<>();
+
         for(Node rect : group.getChildren()){
             Path path = new Path();
             int index = group.getChildren().indexOf(rect);
             Coordinate init = positions.get(index).get(0);
+            ArrayList<Boolean> dead = aliveList.get(index);
             path.getElements().add(new MoveTo(init.X(), init.Y()));
 
             for(Coordinate coord : positions.get(index)){
-                path.getElements().add(new LineTo(coord.X(), coord.Y()));
+                if(dead.get(index)) {
+                    path.getElements().add(new MoveTo(-10, -10));
+                }
+                else{
+                    path.getElements().add(new LineTo(coord.X(), coord.Y()));
+                }
             }
 
             PathTransition pathTransition = new PathTransition();
