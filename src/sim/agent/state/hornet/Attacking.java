@@ -23,7 +23,7 @@ public class Attacking extends State {
         }
         else {
             Coordinate targetVector = VectorToCoordinate(parent.getLocation(), target.getLocation());
-            if(target.getLocation().DistanceTo(parent.getLocation()) > 1.5d){
+            if(target.getLocation().DistanceTo(parent.getLocation()) > 1){
                 return new Coordinate(parent.getLocation().X() + targetVector.X(),
                         parent.getLocation().Y() + targetVector.Y());
             }

@@ -19,13 +19,11 @@ import sim.Coordinate;
 import sim.Logger;
 import sim.Simulation;
 import sim.config.Options;
-import visualiser.Visualiser;
 
-import javax.naming.TimeLimitExceededException;
-import java.lang.reflect.Array;
+import java.io.IOException;
 import java.util.ArrayList;
 
-public class Main extends Application {
+public class Main {
 
     private static Options options;
     private static Simulation sim;
@@ -42,47 +40,47 @@ public class Main extends Application {
         sim = new Simulation(options);
         sim.runForTicks(500);
         logger = sim.getLogger();
-        launch(args);
+        try{
+            logger.WriteFile();
+        }
+        catch(IOException e){
+            System.out.println(e);
+        }
     }
 
 
     @Override
     public void start(Stage primaryStage) throws Exception {
-        ArrayList<ArrayList<Coordinate>> positions = logger.getPositionList();
-        ArrayList<ArrayList<Boolean>> deadList = logger.getAliveList();
-        positions.add(logger.getHornetPositions());
-        ArrayList<Boolean> hornetPositions = new ArrayList<>();
-        hornetPositions.add(false);
-        deadList.add(hornetPositions);
-        primaryStage.setTitle("Swarm AI Mobbing - Visualisation");
-        Group squares = new Group();
-
-        for(ArrayList<Coordinate> position : positions){
-            Rectangle r = new Rectangle();
-            r.setX(position.get(0).X());
-            r.setY(position.get(0).Y());
-            r.setWidth(1);
-            r.setHeight(1);
-            if(positions.indexOf(position) == positions.size() - 1){
-                r.setFill(Color.GOLD);
-                r.setWidth(2);
-                r.setHeight(2);
-            }
-            else{
-                r.setFill(Color.WHITE);
-            }
-            squares.getChildren().add(r);
-        }
-
-        Group root = new Group();
-        root.getChildren().add(squares);
-        Scene scene = new Scene(root, options.getEnvironmentSize(), options.getEnvironmentSize(), Color.BLACK);
-        primaryStage.setScene(scene);
-        primaryStage.show();
-        ArrayList<PathTransition> anim = pathAnimation(squares, positions, deadList);
-        for(PathTransition pt : anim){
-            pt.play();
-        }
+        logger.WriteFile();
+//        primaryStage.setTitle("Swarm AI Mobbing - Visualisation");
+//        Group squares = new Group();
+//
+//        for(ArrayList<Coordinate> position : positions){
+//            Rectangle r = new Rectangle();
+//            r.setX(position.get(0).X());
+//            r.setY(position.get(0).Y());
+//            r.setWidth(1);
+//            r.setHeight(1);
+//            if(positions.indexOf(position) == positions.size() - 1){
+//                r.setFill(Color.GOLD);
+//                r.setWidth(2);
+//                r.setHeight(2);
+//            }
+//            else{
+//                r.setFill(Color.WHITE);
+//            }
+//            squares.getChildren().add(r);
+//        }
+//
+//        Group root = new Group();
+//        root.getChildren().add(squares);
+//        Scene scene = new Scene(root, options.getEnvironmentSize(), options.getEnvironmentSize(), Color.BLACK);
+//        primaryStage.setScene(scene);
+//        primaryStage.show();
+//        ArrayList<PathTransition> anim = pathAnimation(squares, positions, deadList);
+//        for(PathTransition pt : anim){
+//            pt.play();
+//        }
     }
 
     public ArrayList<PathTransition> pathAnimation(Group group, ArrayList<ArrayList<Coordinate>> positions,
@@ -99,7 +97,8 @@ public class Main extends Application {
 
             for(Coordinate coord : positions.get(index)){
                 if(dead.get(index)) {
-                    path.getElements().add(new MoveTo(-10, -10));
+                    path.getElements().add(new LineTo(-10, -10));
+                    rect.setStyle("-fx-background-color: red;");
                 }
                 else{
                     path.getElements().add(new LineTo(coord.X(), coord.Y()));
