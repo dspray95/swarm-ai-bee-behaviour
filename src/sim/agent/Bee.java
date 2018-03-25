@@ -6,6 +6,7 @@ import sim.agent.state.bee.Working;
 
 public class Bee extends Agent {
 
+    boolean pheremoneSet;
 
     public Bee(Simulation parent, Coordinate location) {
         super(parent, location);
@@ -13,5 +14,15 @@ public class Bee extends Agent {
         this.hp = 5;
         this.heatThreshold = 48;
         this.attackPoints = 1;
+    }
+
+    public void setPheremone(){
+        Pheremone pheremone = new Pheremone(this.location);
+        parent.addPheremone(pheremone);
+        pheremoneSet = true;
+    }
+
+    public boolean isPheremoneSet() {
+        return pheremoneSet;
     }
 }

@@ -16,6 +16,10 @@ public class Working extends State {
     }
 
     public Coordinate GetTarget(){
+        if(parent.getPerceptor().isThreatPerceived()){
+
+            parent.setState(new Guarding(parent));
+        }
         return CohesiveRandomWalk();
     }
 

@@ -3,6 +3,7 @@ package sim;
 import sim.agent.Agent;
 import sim.agent.Bee;
 import sim.agent.Hornet;
+import sim.agent.Pheremone;
 import sim.agent.listener.TickListener;
 import sim.config.Options;
 
@@ -12,12 +13,14 @@ public class Simulation {
 
     Options options;
     ArrayList<Bee> swarm;
+    ArrayList<Pheremone> pheremones;
     Hornet hornet;
     ArrayList<TickListener> tickListeners;
     Logger logger;
 
     public Simulation(Options options){
         this.swarm = new ArrayList<>();
+        this.pheremones = new ArrayList<>();
         this.tickListeners = new ArrayList<>();
         this.options = options;
         this.logger = new Logger();
@@ -74,6 +77,11 @@ public class Simulation {
             logger.logPositions(this);
         }
         return true;
+    }
+
+    public void AddPheremone(Pheremone p){
+        this.pheremones.add(p);
+        this.tickListeners.add(p);
     }
 
     public Options getOptions(){

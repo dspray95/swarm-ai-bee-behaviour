@@ -14,15 +14,16 @@ import java.util.Random;
 public abstract class Agent implements TickListener {
 
 
-    Simulation parent;
-    Coordinate location;
-    Options options;
-    State state;
-    Perceptor perceptor;
-    Actuator actuator;
-    int hp;
-    int heatThreshold;
-    int attackPoints;
+    protected Simulation parent;
+    protected Coordinate location;
+    protected Options options;
+    protected State state;
+    protected Perceptor perceptor;
+    protected Actuator actuator;
+    protected int hp;
+    protected int heatThreshold;
+    protected int attackPoints;
+    protected int alertLevel;
 
     public Agent(Simulation parent, Coordinate location){
         this.parent = parent;

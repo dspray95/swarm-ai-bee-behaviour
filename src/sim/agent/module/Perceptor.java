@@ -4,17 +4,20 @@ import sim.Coordinate;
 import sim.Simulation;
 import sim.agent.Agent;
 import sim.agent.Bee;
+import sim.agent.Hornet;
 import sim.config.Options;
 
 import java.util.ArrayList;
 
 public class Perceptor {
 
-    Agent parent;
-    ArrayList<Bee> perceivedBees;
-    Simulation environment;
-    Coordinate swarmCenterpoint;
-    int perceptionDistance;
+    private Agent parent;
+    private ArrayList<Bee> perceivedBees;
+    private Simulation environment;
+    private Coordinate swarmCenterpoint;
+    private int perceptionDistance;
+    private boolean threatPerceived;
+    private Hornet threat;
 
     public Perceptor(Agent parent){
         this.parent = parent;
@@ -25,8 +28,13 @@ public class Perceptor {
     public void PerceptorTick() {
         int totalX = 0;
         int totalY = 0;
-        perceivedBees = null;
         perceivedBees = new ArrayList<>();
+
+        if(parent.getLocation().DistanceTo(environment.getHornet().getLocation()) <= perceptionDistance){
+            threatPerceived = true;
+            threat = environment.getHornet();
+        }
+
         //Get all the bees we can currently perceive
         for (Bee agent : environment.getSwarm()) {
             if (parent.getLocation().DistanceTo(agent.getLocation()) <= perceptionDistance) {
@@ -51,5 +59,13 @@ public class Perceptor {
 
     public Coordinate GetSwarmCenterpoint(){
         return this.swarmCenterpoint;
+    }
+
+    public boolean isThreatPerceived() {
+        return threatPerceived;
+    }
+
+    public Hornet getThreat() {
+        return threat;
     }
 }

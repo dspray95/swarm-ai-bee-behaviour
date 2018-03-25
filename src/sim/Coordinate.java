@@ -28,6 +28,21 @@ public class Coordinate {
         return xDist + yDist;
     }
 
+    /**
+     * Two radii intersect if the square of the difference in the radii is greater than the distance between the two
+     * center positions like so:
+     *  (r1 - r2)^2 > (x1 - x2)^2 + (y1 - y2)^2
+     * @param target
+     * @param targetRadius
+     * @param thisRadius
+     * @return
+     */
+    public boolean CircleIntersects(Coordinate target, int targetRadius, int thisRadius){
+        double distance = Math.pow(this.x - target.X(), 2d) + Math.pow(this.y - target.Y(), 2d);
+        double radii = Math.pow(targetRadius - thisRadius, 2d);
+        return radii > distance;
+    }
+
     public int X() {
         return x;
     }
