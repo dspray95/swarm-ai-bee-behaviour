@@ -41,4 +41,6 @@ public class Defaults {
     public static int HORNET_TARGET_RADIUS = 100;
     public static int HORNET_TARGET_THRESHOLD = 3;
     public static int COHESION_RATE = 55;
+    public static boolean WRITE_SWARM_FILE = false;
+    public static boolean WRITE_LOG_FILE = true;
 }

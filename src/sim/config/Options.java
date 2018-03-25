@@ -7,6 +7,8 @@ public class Options {
     int environmentSize;
     int perceptionDistance;
     int cohesionRate;
+    boolean writeSwarmFile;
+    boolean writeLogFile;
 
     public Options(){
         this.cohesionRate = Defaults.COHESION_RATE;
@@ -14,6 +16,8 @@ public class Options {
         this.environmentSize = Defaults.ENVIRONMENT_SIZE;
         this.perceptionDistance = Defaults.PERCEPTION_DISTANCE;
         this.deploymentArea = Defaults.DEPLOYMENT_AREA;
+        this.writeSwarmFile = Defaults.WRITE_SWARM_FILE;
+        this.writeLogFile = Defaults.WRITE_LOG_FILE;
     }
     public int getSwarmSize() {
         return swarmSize;
@@ -55,4 +59,19 @@ public class Options {
         this.cohesionRate = cohesionRate;
     }
 
+    public boolean isWriteSwarmFile() {
+        return writeSwarmFile;
+    }
+
+    public void setWriteSwarmFile(boolean writeSwarmFile) {
+        this.writeSwarmFile = writeSwarmFile;
+    }
+
+    public boolean isWriteLogFile() {
+        return writeLogFile;
+    }
+
+    public void setWriteLogFile(boolean writeLogFile) {
+        this.writeLogFile = writeLogFile;
+    }
 }
