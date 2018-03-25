@@ -37,7 +37,7 @@ public class Coordinate {
      * @param thisRadius
      * @return
      */
-    public boolean CircleIntersects(Coordinate target, int targetRadius, int thisRadius){
+    public boolean CircleIntersects(Coordinate target, double targetRadius, double thisRadius){
         double distance = Math.pow(this.x - target.X(), 2d) + Math.pow(this.y - target.Y(), 2d);
         double radii = Math.pow(targetRadius - thisRadius, 2d);
         return radii > distance;

@@ -23,7 +23,8 @@ public abstract class Agent implements TickListener {
     protected int hp;
     protected int heatThreshold;
     protected int attackPoints;
-    protected int alertLevel;
+    protected double alertLevel;
+    protected boolean pheromoneSet;
 
     public Agent(Simulation parent, Coordinate location){
         this.parent = parent;
@@ -31,6 +32,16 @@ public abstract class Agent implements TickListener {
         this.options = parent.getOptions();
         this.perceptor = new Perceptor(this);
         this.actuator = new Actuator(this);
+    }
+
+    public void setPheremone(){
+        Pheromone pheromone = new Pheromone(this.location, 100, options.getPerceptionDistance()/1.5);
+        parent.AddPheremone(pheromone);
+        pheromoneSet = true;
+    }
+
+    public boolean isPheromoneSet() {
+        return pheromoneSet;
     }
 
     public Simulation getParent() {
@@ -80,6 +91,15 @@ public abstract class Agent implements TickListener {
 
     public int AttackRoll(){
         return new Random().nextInt(attackPoints) + attackPoints;
+    }
+
+
+    public double getAlertLevel() {
+        return alertLevel;
+    }
+
+    public void increaseAlertLevel(double alertLevel) {
+        this.alertLevel += alertLevel;
     }
 
     @Override

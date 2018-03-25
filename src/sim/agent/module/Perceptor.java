@@ -5,6 +5,7 @@ import sim.Simulation;
 import sim.agent.Agent;
 import sim.agent.Bee;
 import sim.agent.Hornet;
+import sim.agent.Pheromone;
 import sim.config.Options;
 
 import java.util.ArrayList;
@@ -41,6 +42,12 @@ public class Perceptor {
                 perceivedBees.add(agent);
                 totalX = totalX + agent.getLocation().X();
                 totalY = totalY + agent.getLocation().Y();
+            }
+        }
+
+        for (Pheromone p : environment.getPheromones()){
+            if(parent.getLocation().CircleIntersects(p.getLocation(), p.getRadius(), p.getRadius())){
+                parent.increaseAlertLevel(p.getStrength());
             }
         }
         //TODO divide by zero exception
