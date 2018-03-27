@@ -38,7 +38,7 @@ public class Perceptor {
 
         //Get all the bees we can currently perceive
         for (Bee agent : environment.getSwarm()) {
-            if (parent.getLocation().DistanceTo(agent.getLocation()) <= perceptionDistance) {
+            if (parent.getLocation().DistanceTo(agent.getLocation()) <= perceptionDistance && agent != parent && agent.getHP() > 0) {
                 perceivedBees.add(agent);
                 totalX = totalX + agent.getLocation().X();
                 totalY = totalY + agent.getLocation().Y();
@@ -47,10 +47,10 @@ public class Perceptor {
 
         for (Pheromone p : environment.getPheromones()){
             if(parent.getLocation().CircleIntersects(p.getLocation(), p.getRadius(), p.getRadius())){
+                System.out.println("pheromone perceived at strength " + p.getStrength());
                 parent.increaseAlertLevel(p.getStrength());
             }
         }
-        //TODO divide by zero exception
         try{
             swarmCenterpoint = new Coordinate(totalX / perceivedBees.size(), totalY / perceivedBees.size());
         }

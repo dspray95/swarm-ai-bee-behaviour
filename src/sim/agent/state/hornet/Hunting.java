@@ -25,7 +25,7 @@ public class Hunting extends State {
     /**
      * If there is a valid target to hunt, notify the parent to change state
      * otherwise we can continue seeking by either getting closer to the swarm center or
-     * random walking
+     * random walking.
      * @return
      */
     @Override

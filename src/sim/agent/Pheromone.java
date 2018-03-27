@@ -17,7 +17,7 @@ public class Pheromone implements TickListener{
 
     @Override
     public void Tick() {
-
+        this.strength -= 0.1d; //pheromone strength decay over time
     }
 
     public Coordinate getLocation(){

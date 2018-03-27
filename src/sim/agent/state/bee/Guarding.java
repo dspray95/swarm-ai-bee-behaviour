@@ -14,6 +14,6 @@ public class Guarding extends State {
 
     @Override
     public Coordinate GetTarget() {
-        return null;
+        return RandomWalk();
     }
 }

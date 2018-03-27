@@ -68,6 +68,9 @@ public class Simulation {
         for(TickListener listener : tickListeners){
             listener.Tick();
         }
+        for(Pheromone p : pheromones){
+            tickListeners.add(p);
+        }
     }
 
     public boolean runForTicks(int numTicks){
@@ -81,7 +84,6 @@ public class Simulation {
 
     public void AddPheremone(Pheromone p){
         this.pheromones.add(p);
-        this.tickListeners.add(p);
     }
 
     public Options getOptions(){

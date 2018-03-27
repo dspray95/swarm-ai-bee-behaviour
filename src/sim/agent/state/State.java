@@ -24,11 +24,15 @@ public abstract  class State {
         return new Coordinate(currentPos.X() + nextVector.X(), currentPos.Y() + nextVector.Y());
     }
 
+    /**
+     * Given a current and target coordinate, returns the vector heading from current to target
+     * @param current
+     * @param target
+     * @return
+     */
     public Coordinate VectorToCoordinate(Coordinate current, Coordinate target){
         double angle;
-        double angleDegree;
         double cardinality;
-        Coordinate targetVector;
         //atan2 returns a radian, which is then converted to a degree.
         double radian = Math.atan2(target.Y() - current.Y(), target.X() - current.X());
         if(radian < 0){
@@ -36,8 +40,6 @@ public abstract  class State {
         }
         angle = Math.toDegrees(radian);
         angle += 90;
-
-        //NORTH = 270, WEST = 180, EAST = 0, SOUTH = 90
         cardinality = Math.round(angle/45); //break down into the eight cardinal directions used in the model
         switch((int) cardinality){
             case 0:

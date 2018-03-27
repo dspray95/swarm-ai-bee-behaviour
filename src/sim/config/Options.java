@@ -7,6 +7,7 @@ public class Options {
     int environmentSize;
     int perceptionDistance;
     int cohesionRate;
+    double aggression;
     boolean writeSwarmFile;
     boolean writeLogFile;
 
@@ -73,5 +74,13 @@ public class Options {
 
     public void setWriteLogFile(boolean writeLogFile) {
         this.writeLogFile = writeLogFile;
+    }
+
+    public double getAggression(){
+        return this.aggression;
+    }
+
+    public void setAggression(double aggression){
+        this.aggression = aggression;
     }
 }

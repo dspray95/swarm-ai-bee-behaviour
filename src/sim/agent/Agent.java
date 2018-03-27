@@ -25,6 +25,7 @@ public abstract class Agent implements TickListener {
     protected int attackPoints;
     protected double alertLevel;
     protected boolean pheromoneSet;
+    protected int beesKilled;
 
     public Agent(Simulation parent, Coordinate location){
         this.parent = parent;
@@ -32,6 +33,7 @@ public abstract class Agent implements TickListener {
         this.options = parent.getOptions();
         this.perceptor = new Perceptor(this);
         this.actuator = new Actuator(this);
+        this.beesKilled = 0;
     }
 
     public void setPheremone(){
@@ -100,6 +102,15 @@ public abstract class Agent implements TickListener {
 
     public void increaseAlertLevel(double alertLevel) {
         this.alertLevel += alertLevel;
+    }
+
+
+    public int getBeesKilled() {
+        return beesKilled;
+    }
+
+    public void increaseBeesKilled() {
+        this.beesKilled++;
     }
 
     @Override

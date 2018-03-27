@@ -5,6 +5,8 @@ import sim.agent.Agent;
 import sim.agent.state.State;
 import sun.security.ssl.Debug;
 
+import java.util.Random;
+
 public class Attacking extends State {
 
     Agent target;
@@ -15,10 +17,22 @@ public class Attacking extends State {
         System.out.println("STATE: attacking");
     }
 
+    /**
+     * Perfoms an attack roll on the target if the target is close enough
+     * Returns to the hunting state or a leaving state if the target is killed
+     * @return
+     */
     @Override
     public Coordinate GetTarget() {
         if(target.getHP() <= 0){
-            parent.setState(new Hunting(parent));
+            parent.increaseBeesKilled();
+            if(parent.getBeesKilled() > 3 && parent.getBeesKilled() * 15 > new Random().nextInt(100)) {
+                parent.setState(new Leaving(parent));
+            }
+            else{
+                parent.setState(new Hunting(parent));
+            }
+
             return parent.getLocation();
         }
         else {

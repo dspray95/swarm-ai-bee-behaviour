@@ -30,14 +30,19 @@ public class Main {
     private static Logger logger;
 
     public static void main(String[] args){
-        //ToDo args options
-        options = new Options();
+        if(args.length > 0){
+            options = ParseArgs(args);
+        }
+        else {
+            //ToDo args options
+            options = new Options();
             options.setEnvironmentSize(750);
             options.setSwarmSize(500);
             options.setCohesionRate(5);
             options.setPerceptionDistance(250);
             options.setDeploymentArea(500);
             options.setWriteSwarmFile(true);
+        }
         sim = new Simulation(options);
         sim.runForTicks(500);
         if(options.isWriteLogFile()) {
@@ -48,5 +53,23 @@ public class Main {
                 System.out.println(e);
             }
         }
+    }
+
+    public static Options ParseArgs(String[] args) {
+        Options options = new Options();
+        String[] argCurrent;
+        for (String arg : args) {
+            if (arg.contains("swarmsize")) {
+                argCurrent = arg.split(":");
+                options.setSwarmSize(Integer.parseInt(argCurrent[1]));
+            } else if (arg.contains("aggression")) {
+                argCurrent = arg.split(":");
+                options.setAggression(Integer.parseInt(argCurrent[1]));
+            } else if (arg.contains("writeswarmfile")){
+                argCurrent = arg.split(":");
+                options.setWriteSwarmFile(argCurrent[1].equals("true"));
+            }
+        }
+        return options;
     }
 }
