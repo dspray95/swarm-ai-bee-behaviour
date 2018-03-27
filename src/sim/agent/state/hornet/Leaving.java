@@ -18,16 +18,22 @@ public class Leaving extends State {
         if(new Random().nextInt(100) > 25){
             return getLeaveTarget();
         }
-//        else{
+        else{
             return RandomWalk();
-//        }
+        }
     }
 
     public Coordinate getLeaveTarget(){
         //First we need to get the vector to the center of the swarm
-        Coordinate vectorFromCenter = VectorToCoordinate(parent.getLocation(), parent.getPerceptor().GetSwarmCenterpoint());
-        //then we can invert it
-        vectorFromCenter.setXY(vectorFromCenter.X() * -1, vectorFromCenter.Y() * -1);
-        return new Coordinate(parent.getLocation().X() + vectorFromCenter.X(), parent.getLocation().Y() + vectorFromCenter.Y());
+        Coordinate current = parent.getLocation();
+        Coordinate targetVector = VectorToCoordinate(current, parent.getPerceptor().getActualSwarmCenterpoint());
+//        then we can invert it
+        if(targetVector.X() != 0){
+            targetVector.setX(targetVector.X() * -1);
+        }
+        if(targetVector.Y() != 0){
+            targetVector.setY(targetVector.Y() * -1);
+        }
+        return new Coordinate(current.X() + targetVector.X(), current.Y() + targetVector.Y());
     }
 }

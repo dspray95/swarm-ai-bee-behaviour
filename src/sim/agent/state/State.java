@@ -33,6 +33,7 @@ public abstract  class State {
     public Coordinate VectorToCoordinate(Coordinate current, Coordinate target){
         double angle;
         double cardinality;
+        Coordinate vector;
         //atan2 returns a radian, which is then converted to a degree.
         double radian = Math.atan2(target.Y() - current.Y(), target.X() - current.X());
         if(radian < 0){
@@ -41,25 +42,35 @@ public abstract  class State {
         angle = Math.toDegrees(radian);
         angle += 90;
         cardinality = Math.round(angle/45); //break down into the eight cardinal directions used in the model
-        switch((int) cardinality){
+        switch((int) cardinality) {
             case 0:
-                return Defaults.CARDINAL_VECTOR.get("WEST");
+                vector = Defaults.CARDINAL_VECTOR.get("WEST");
+                break;
             case 1:
-                return Defaults.CARDINAL_VECTOR.get("NORTHWEST");
+                vector = Defaults.CARDINAL_VECTOR.get("NORTHWEST");
+                break;
             case 2:
-                return Defaults.CARDINAL_VECTOR.get("NORTH");
+                vector = Defaults.CARDINAL_VECTOR.get("NORTH");
+                break;
             case 3:
-                return Defaults.CARDINAL_VECTOR.get("NORTHEAST");
+                vector = Defaults.CARDINAL_VECTOR.get("NORTHEAST");
+                break;
             case 4:
-                return Defaults.CARDINAL_VECTOR.get("EAST");
+                vector = Defaults.CARDINAL_VECTOR.get("EAST");
+                break;
             case 5:
-                return Defaults.CARDINAL_VECTOR.get("SOUTHEAST");
+                vector = Defaults.CARDINAL_VECTOR.get("SOUTHEAST");
+                break;
             case 6:
-                return Defaults.CARDINAL_VECTOR.get("SOUTH");
+                vector = Defaults.CARDINAL_VECTOR.get("SOUTH");
+                break;
             case 7:
-                return Defaults.CARDINAL_VECTOR.get("SOUTHWEST");
+                vector = Defaults.CARDINAL_VECTOR.get("SOUTHWEST");
+                break;
             default:
-                return new Coordinate(0,0);
+                vector = new Coordinate(0, 0);
+                break;
         }
+        return new Coordinate(vector.X(), vector.Y());
     }
 }

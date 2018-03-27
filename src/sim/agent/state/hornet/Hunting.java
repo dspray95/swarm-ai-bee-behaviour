@@ -3,7 +3,6 @@ package sim.agent.state.hornet;
 import sim.Coordinate;
 import sim.agent.Agent;
 import sim.agent.Bee;
-import sim.agent.state.Dead;
 import sim.agent.state.State;
 import sim.config.Defaults;
 
@@ -49,7 +48,7 @@ public class Hunting extends State {
      */
     public Coordinate MoveToCenter(){
         Coordinate current = parent.getLocation();
-        Coordinate cohesiveVector = VectorToCoordinate(current, parent.getPerceptor().GetSwarmCenterpoint());
+        Coordinate cohesiveVector = VectorToCoordinate(current, parent.getPerceptor().GetPerceivedCenterpoint());
         return new Coordinate(current.X() + cohesiveVector.X(), current.Y() + cohesiveVector.Y());
     }
 

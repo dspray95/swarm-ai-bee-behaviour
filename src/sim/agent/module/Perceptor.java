@@ -15,7 +15,8 @@ public class Perceptor {
     private Agent parent;
     private ArrayList<Bee> perceivedBees;
     private Simulation environment;
-    private Coordinate swarmCenterpoint;
+    private Coordinate perceivedCenterpoint;
+    private Coordinate actualSwarmCenterpoint;
     private int perceptionDistance;
     private boolean threatPerceived;
     private Hornet threat;
@@ -29,6 +30,8 @@ public class Perceptor {
     public void PerceptorTick() {
         int totalX = 0;
         int totalY = 0;
+        int perceivedX = 0;
+        int perceivedY = 0;
         perceivedBees = new ArrayList<>();
 
         if(parent.getLocation().DistanceTo(environment.getHornet().getLocation()) <= perceptionDistance){
@@ -40,9 +43,11 @@ public class Perceptor {
         for (Bee agent : environment.getSwarm()) {
             if (parent.getLocation().DistanceTo(agent.getLocation()) <= perceptionDistance && agent != parent && agent.getHP() > 0) {
                 perceivedBees.add(agent);
-                totalX = totalX + agent.getLocation().X();
-                totalY = totalY + agent.getLocation().Y();
+                perceivedX = perceivedX + agent.getLocation().X();
+                perceivedY = perceivedY + agent.getLocation().Y();
             }
+            totalX = totalX + agent.getLocation().X();
+            totalY = totalY + agent.getLocation().Y();
         }
 
         for (Pheromone p : environment.getPheromones()){
@@ -51,25 +56,32 @@ public class Perceptor {
                 parent.increaseAlertLevel(p.getStrength());
             }
         }
+
         try{
-            swarmCenterpoint = new Coordinate(totalX / perceivedBees.size(), totalY / perceivedBees.size());
+            perceivedCenterpoint = new Coordinate(perceivedX / perceivedBees.size(), perceivedY / perceivedBees.size());
         }
         catch(ArithmeticException e){ //Divide by zero exception fires when no bees are perceived
             Options o = parent.getParent().getOptions();
-            swarmCenterpoint = new Coordinate(o.getEnvironmentSize()/2, o.getEnvironmentSize()/2);
+            perceivedCenterpoint = new Coordinate(o.getEnvironmentSize()/2, o.getEnvironmentSize()/2);
         }
+
+        actualSwarmCenterpoint = new Coordinate(totalX / environment.getSwarm().size(), totalY / environment.getSwarm().size());
     }
 
     public ArrayList<Bee> GetPerceivedBees(){
         return this.perceivedBees;
     }
 
-    public Coordinate GetSwarmCenterpoint(){
-        return this.swarmCenterpoint;
+    public Coordinate GetPerceivedCenterpoint(){
+        return this.perceivedCenterpoint;
     }
 
     public boolean isThreatPerceived() {
         return threatPerceived;
+    }
+
+    public Coordinate getActualSwarmCenterpoint() {
+        return actualSwarmCenterpoint;
     }
 
     public Hornet getThreat() {
