@@ -23,6 +23,7 @@ public abstract class Agent implements TickListener {
     protected int hp;
     protected int heatThreshold;
     protected int attackPoints;
+    protected double aggression;
     protected double alertLevel;
     protected boolean pheromoneSet;
     protected int beesKilled;
@@ -36,6 +37,33 @@ public abstract class Agent implements TickListener {
         this.beesKilled = 0;
     }
 
+    public void Damage(int value){
+        this.hp -= value;
+        System.out.println("Attacked for " + value + " damage.");
+        if(hp <= 0){
+            System.out.println("Bee killed");
+            this.state = new Dead(this);
+        }
+
+    }
+
+    @Override
+    public void Tick() {
+        boolean gettingNextMove = true;
+        perceptor.PerceptorTick();
+        while(gettingNextMove){
+            Coordinate target = state.GetTarget();
+            if(actuator.Move(target)){
+                gettingNextMove = false;
+            }
+        }
+    }
+
+    public int AttackRoll(){
+        return new Random().nextInt(attackPoints) + attackPoints;
+    }
+
+
     public void setPheremone(){
         Pheromone pheromone = new Pheromone(this.location, 100, options.getPerceptionDistance()/1.5);
         parent.AddPheremone(pheromone);
@@ -44,6 +72,27 @@ public abstract class Agent implements TickListener {
 
     public boolean isPheromoneSet() {
         return pheromoneSet;
+    }
+
+    public double getAlertLevel() {
+        return alertLevel;
+    }
+
+    public void increaseAlertLevel(double alertLevel) {
+        this.alertLevel += alertLevel;
+    }
+
+
+    public int getBeesKilled() {
+        return beesKilled;
+    }
+
+    public void increaseBeesKilled() {
+        this.beesKilled++;
+    }
+
+    public double getAggression() {
+        return aggression;
     }
 
     public Simulation getParent() {
@@ -81,47 +130,4 @@ public abstract class Agent implements TickListener {
         return this.state;
     }
 
-    public void Damage(int value){
-        this.hp -= value;
-        System.out.println("Attacked for " + value + " damage.");
-        if(hp <= 0){
-            System.out.println("Bee killed");
-            this.state = new Dead(this);
-        }
-
-    }
-
-    public int AttackRoll(){
-        return new Random().nextInt(attackPoints) + attackPoints;
-    }
-
-
-    public double getAlertLevel() {
-        return alertLevel;
-    }
-
-    public void increaseAlertLevel(double alertLevel) {
-        this.alertLevel += alertLevel;
-    }
-
-
-    public int getBeesKilled() {
-        return beesKilled;
-    }
-
-    public void increaseBeesKilled() {
-        this.beesKilled++;
-    }
-
-    @Override
-    public void Tick() {
-        boolean gettingNextMove = true;
-        perceptor.PerceptorTick();
-        while(gettingNextMove){
-            Coordinate target = state.GetTarget();
-            if(actuator.Move(target)){
-                gettingNextMove = false;
-            }
-        }
-    }
 }

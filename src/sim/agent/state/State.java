@@ -71,6 +71,6 @@ public abstract  class State {
                 vector = new Coordinate(0, 0);
                 break;
         }
-        return new Coordinate(vector.X(), vector.Y());
+        return new Coordinate(vector.X(), vector.Y()); //Return a new coordinate object as return Defaults vectors can result in strange behaviour
     }
 }

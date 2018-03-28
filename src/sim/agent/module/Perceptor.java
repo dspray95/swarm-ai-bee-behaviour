@@ -6,6 +6,7 @@ import sim.agent.Agent;
 import sim.agent.Bee;
 import sim.agent.Hornet;
 import sim.agent.Pheromone;
+import sim.agent.state.bee.Mobbing;
 import sim.config.Options;
 
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class Perceptor {
     private int perceptionDistance;
     private boolean threatPerceived;
     private Hornet threat;
+    private int perceivedMobSize;
 
     public Perceptor(Agent parent){
         this.parent = parent;
@@ -32,6 +34,7 @@ public class Perceptor {
         int totalY = 0;
         int perceivedX = 0;
         int perceivedY = 0;
+        perceivedMobSize = 0;
         perceivedBees = new ArrayList<>();
 
         if(parent.getLocation().DistanceTo(environment.getHornet().getLocation()) <= perceptionDistance){
@@ -45,6 +48,9 @@ public class Perceptor {
                 perceivedBees.add(agent);
                 perceivedX = perceivedX + agent.getLocation().X();
                 perceivedY = perceivedY + agent.getLocation().Y();
+                if(agent.getState().getClass() == Mobbing.class){
+                    perceivedMobSize++;
+                }
             }
             totalX = totalX + agent.getLocation().X();
             totalY = totalY + agent.getLocation().Y();
@@ -82,6 +88,10 @@ public class Perceptor {
 
     public Coordinate getActualSwarmCenterpoint() {
         return actualSwarmCenterpoint;
+    }
+
+    public int getPerceivedMobSize(){
+        return this.perceivedMobSize;
     }
 
     public Hornet getThreat() {
