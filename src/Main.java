@@ -18,6 +18,7 @@ import javafx.util.Duration;
 import sim.Coordinate;
 import sim.Logger;
 import sim.Simulation;
+import sim.config.AggressionSetting;
 import sim.config.Options;
 
 import java.io.IOException;
@@ -42,6 +43,7 @@ public class Main {
             options.setPerceptionDistance(250);
             options.setDeploymentArea(500);
             options.setWriteSwarmFile(true);
+            options.setAggressionSetting(AggressionSetting.RANDOM_SPREAD);
         }
         sim = new Simulation(options);
         sim.runForTicks(500);

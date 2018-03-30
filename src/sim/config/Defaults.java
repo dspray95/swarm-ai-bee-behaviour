@@ -43,4 +43,5 @@ public class Defaults {
     public static int COHESION_RATE = 55;
     public static boolean WRITE_SWARM_FILE = false;
     public static boolean WRITE_LOG_FILE = true;
+    public static AggressionSetting AGGRESSION_SETTING = AggressionSetting.UNIFORM;
 }

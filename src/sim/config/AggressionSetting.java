@@ -1,4 +1,3 @@
 package sim.config;
 
-public class AggressionSetting {
-}
+public enum AggressionSetting{RANDOM_SPREAD, UNIFORM, CLOSE_TO_VALUE}

@@ -1,5 +1,6 @@
 package sim;
 
+import com.sun.org.apache.bcel.internal.generic.PopInstruction;
 import sim.agent.Agent;
 import sim.agent.Bee;
 import sim.agent.Hornet;
@@ -24,44 +25,7 @@ public class Simulation {
         this.tickListeners = new ArrayList<>();
         this.options = options;
         this.logger = new Logger();
-        Populate();
-    }
-
-    public void Populate(){
-        for(int i = 0; i < options.getSwarmSize(); i++){
-            Coordinate location = new Coordinate();
-            int areaLowerBound = (options.getEnvironmentSize() - options.getDeploymentArea());
-            boolean gettingCoordinate = true;
-            while(gettingCoordinate){
-                boolean coordinateClash = false;
-                location.RandomCoordinate(options.getDeploymentArea(), areaLowerBound);
-                for(Agent agent : swarm){
-                    if(location.X() == agent.getLocation().X() && location.Y() == agent.getLocation().Y()){
-                        coordinateClash = true;
-                        break;
-                    }
-                }
-                if(!coordinateClash){
-                    gettingCoordinate = false;
-                }
-            }
-            Bee bee = new Bee(this, location);
-            tickListeners.add(bee);
-            swarm.add(bee);
-
-        }
-        hornet = new Hornet(this, new Coordinate(options.getEnvironmentSize()/2, options.getDeploymentArea()/2-50));
-        tickListeners.add(hornet);
-    }
-
-    public void RemoveFromSimulation(Agent agent){
-        if(agent.getClass() == Bee.class){
-            Bee bee = swarm.get(swarm.indexOf(agent));
-            bee = null;
-        }
-        else if(agent.getClass() == Hornet.class){
-            hornet = null;
-        }
+        new Populator(this, options).Populate();
     }
 
     public void Tick(){

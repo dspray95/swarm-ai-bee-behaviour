@@ -7,6 +7,7 @@ public class Options {
     int environmentSize;
     int perceptionDistance;
     int cohesionRate;
+    AggressionSetting aggressionSetting;
     double aggression;
     boolean writeSwarmFile;
     boolean writeLogFile;
@@ -19,6 +20,7 @@ public class Options {
         this.deploymentArea = Defaults.DEPLOYMENT_AREA;
         this.writeSwarmFile = Defaults.WRITE_SWARM_FILE;
         this.writeLogFile = Defaults.WRITE_LOG_FILE;
+        this.aggressionSetting = Defaults.AGGRESSION_SETTING;
     }
     public int getSwarmSize() {
         return swarmSize;
@@ -83,4 +85,13 @@ public class Options {
     public void setAggression(double aggression){
         this.aggression = aggression;
     }
+
+    public AggressionSetting getAggressionSetting() {
+        return aggressionSetting;
+    }
+
+    public void setAggressionSetting(AggressionSetting aggressionSetting) {
+        this.aggressionSetting = aggressionSetting;
+    }
+
 }

@@ -31,9 +31,15 @@ public class Guarding extends State {
         if(threat != null){
             if(getWillingness() > new Random().nextInt(100)){
                 parent.setState(new Mobbing(parent));
+                return parent.getLocation();
             }
             else{
-                //run away
+                if(new Random().nextInt(10) > 1){
+                    return Retreat();
+                }
+                else{
+                    return RandomWalk();
+                }
             }
         }
         else{
@@ -63,7 +69,17 @@ public class Guarding extends State {
     }
 
     public Coordinate Retreat(){
-
+        //get our target vector
+        Coordinate targetVector = VectorToCoordinate(parent.getLocation(), threat.getLocation());
+        //reverse target vector direction
+        if(targetVector.X() != 0){
+            targetVector.setX(targetVector.X() * -1);
+        }
+        if(targetVector.Y() != 0){
+            targetVector.setY(targetVector.Y() * -1);
+        }
+        //vector to actual location;
+        return new Coordinate(parent.getLocation().X() + targetVector.X(), parent.getLocation().Y() + targetVector.Y());
     }
 
     public void setThreat(Agent threat){
