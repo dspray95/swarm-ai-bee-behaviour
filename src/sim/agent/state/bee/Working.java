@@ -21,10 +21,11 @@ public class Working extends State {
             parent.setState(new Guarding(parent));
             return parent.getLocation();
         }
-        else {
+        else if(parent.getAlertLevel() > 0){
             parent.increaseAlertLevel(-0.1d); //decrement alert level by tick if we cant see the threat
-            return CohesiveRandomWalk();
+
         }
+        return CohesiveRandomWalk();
     }
 
     public Coordinate CohesiveRandomWalk(){

@@ -13,6 +13,7 @@ public class Guarding extends State {
 
     public Guarding(Agent parent) {
         super(parent);
+        System.out.println("NEW GUARDING STATE");
         threshold = 50;
     }
 

@@ -11,6 +11,7 @@ public class Options {
     double aggression;
     boolean writeSwarmFile;
     boolean writeLogFile;
+    int pheromoneStrength;
 
     public Options(){
         this.cohesionRate = Defaults.COHESION_RATE;
@@ -21,7 +22,19 @@ public class Options {
         this.writeSwarmFile = Defaults.WRITE_SWARM_FILE;
         this.writeLogFile = Defaults.WRITE_LOG_FILE;
         this.aggressionSetting = Defaults.AGGRESSION_SETTING;
+        this.aggression = Defaults.AGGRESSION_VALUE;
+        this.pheromoneStrength = Defaults.PHEROMONE_STRENGTH;
     }
+
+
+    public int getPheromoneStrength() {
+        return pheromoneStrength;
+    }
+
+    public void setPheromoneStrength(int pheromoneStrength) {
+        this.pheromoneStrength = pheromoneStrength;
+    }
+
     public int getSwarmSize() {
         return swarmSize;
     }

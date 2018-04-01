@@ -46,6 +46,9 @@ public class Simulation {
         return true;
     }
 
+    public void RemovePheromone(Pheromone p){
+        pheromones.remove(pheromones.get(pheromones.indexOf(p)));
+    }
     public void AddPheremone(Pheromone p){
         this.pheromones.add(p);
     }

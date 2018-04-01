@@ -37,16 +37,14 @@ public class Main {
         else {
             //ToDo args options
             options = new Options();
-            options.setEnvironmentSize(750);
-            options.setSwarmSize(500);
             options.setCohesionRate(5);
-            options.setPerceptionDistance(250);
-            options.setDeploymentArea(500);
-            options.setWriteSwarmFile(true);
+            options.setWriteLogFile(true);
             options.setAggressionSetting(AggressionSetting.RANDOM_SPREAD);
+            options.setAggression(0.5d);
+            options.setPheromoneStrength(500);
         }
         sim = new Simulation(options);
-        sim.runForTicks(500);
+        sim.runForTicks(1000);
         if(options.isWriteLogFile()) {
             logger = sim.getLogger();
             try {

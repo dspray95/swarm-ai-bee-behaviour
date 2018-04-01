@@ -8,6 +8,7 @@ public class Mobbing extends State {
 
     public Mobbing(Agent parent) {
         super(parent);
+        System.out.println("NEW MOBBING STATE");
     }
 
     @Override

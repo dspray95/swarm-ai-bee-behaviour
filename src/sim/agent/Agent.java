@@ -65,7 +65,7 @@ public abstract class Agent implements TickListener {
 
 
     public void setPheremone(){
-        Pheromone pheromone = new Pheromone(this.location, 100, options.getPerceptionDistance()/1.5);
+        Pheromone pheromone = new Pheromone(parent, this.location, options.getPheromoneStrength(), options.getPerceptionDistance()/1.5);
         parent.AddPheremone(pheromone);
         pheromoneSet = true;
     }

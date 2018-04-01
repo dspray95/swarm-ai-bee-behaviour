@@ -34,14 +34,16 @@ public class Defaults {
 
     }
 
-    public static int SWARM_SIZE = 100;
-    public static int ENVIRONMENT_SIZE = SWARM_SIZE*10;
-    public static int DEPLOYMENT_AREA = ENVIRONMENT_SIZE;
-    public static int PERCEPTION_DISTANCE = 75;
+    public static int SWARM_SIZE = 500;
+    public static int ENVIRONMENT_SIZE = 750;
+    public static int DEPLOYMENT_AREA = 500;
+    public static int PERCEPTION_DISTANCE = 250;
     public static int HORNET_TARGET_RADIUS = 100;
     public static int HORNET_TARGET_THRESHOLD = 3;
-    public static int COHESION_RATE = 55;
+    public static int COHESION_RATE = 5;
     public static boolean WRITE_SWARM_FILE = false;
     public static boolean WRITE_LOG_FILE = true;
     public static AggressionSetting AGGRESSION_SETTING = AggressionSetting.UNIFORM;
+    public static double AGGRESSION_VALUE = 0.75d;
+    public static int PHEROMONE_STRENGTH = 250;
 }
