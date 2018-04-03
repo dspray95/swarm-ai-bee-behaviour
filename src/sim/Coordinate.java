@@ -21,8 +21,14 @@ public class Coordinate {
         setX(r.nextInt(xyBounds - lowerBound) + lowerBound);
     }
 
+    /**
+     * Euclidean distance, balanced to not perform square root operation
+     * Euclidean between A and B = sqrt((Ax - Bx)^2 + (Ay - By)*2)
+     * Returned distance = (Ax - Bx)^2 + (Ay - By)*2
+     * @param c
+     * @return
+     */
     public double DistanceTo(Coordinate c){
-
         double xDist = Math.pow(this.X() - c.X(), 2);
         double yDist = Math.pow(this.Y() - c.Y(), 2);
         return xDist + yDist;

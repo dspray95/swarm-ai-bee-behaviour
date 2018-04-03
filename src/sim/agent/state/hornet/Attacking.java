@@ -3,6 +3,7 @@ package sim.agent.state.hornet;
 import sim.Coordinate;
 import sim.agent.Agent;
 import sim.agent.state.State;
+import sim.config.Defaults;
 import sun.security.ssl.Debug;
 
 import java.util.Random;
@@ -37,15 +38,24 @@ public class Attacking extends State {
         }
         else {
             Coordinate targetVector = VectorToCoordinate(parent.getLocation(), target.getLocation());
-            if(target.getLocation().DistanceTo(parent.getLocation()) > 1){
-                return new Coordinate(parent.getLocation().X() + targetVector.X(),
-                        parent.getLocation().Y() + targetVector.Y());
-            }
-            else{
+            if(isProximate(target.getLocation())){
                 target.Damage(parent.AttackRoll());
                 return parent.getLocation();
             }
-
+            else{
+                return new Coordinate(parent.getLocation().X() + targetVector.X(),
+                        parent.getLocation().Y() + targetVector.Y());
+            }
         }
+    }
+
+    public boolean isProximate(Coordinate target){
+        for(Coordinate coord : Defaults.VECTORS){
+            Coordinate vectorLocation = new Coordinate(coord.X() + parent.getLocation().X(), coord.Y() + parent.getLocation().Y());
+            if(vectorLocation.X() == target.X() && vectorLocation.Y() == target.Y()){
+                return true;
+            }
+        }
+        return false;
     }
 }

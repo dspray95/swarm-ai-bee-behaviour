@@ -66,6 +66,7 @@ public class Perceptor {
             perceivedCenterpoint = new Coordinate(perceivedX / perceivedBees.size(), perceivedY / perceivedBees.size());
         }
         catch(ArithmeticException e){ //Divide by zero exception fires when no bees are perceived
+            //TODO inneficiency - only needs to be calculated once, not for every bee
             Options o = parent.getParent().getOptions();
             perceivedCenterpoint = new Coordinate(o.getEnvironmentSize()/2, o.getEnvironmentSize()/2);
         }
