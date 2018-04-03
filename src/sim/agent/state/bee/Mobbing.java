@@ -4,6 +4,8 @@ import sim.Coordinate;
 import sim.agent.Agent;
 import sim.agent.state.State;
 
+import java.util.Random;
+
 public class Mobbing extends State {
 
     public Mobbing(Agent parent) {
@@ -13,6 +15,6 @@ public class Mobbing extends State {
 
     @Override
     public Coordinate GetTarget() {
-        return parent.getLocation();
+        return RandomWalk();
     }
 }

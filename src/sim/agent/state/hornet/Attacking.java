@@ -37,7 +37,6 @@ public class Attacking extends State {
             return parent.getLocation();
         }
         else {
-
             if(isProximate(target.getLocation())){
                 target.Damage(parent.AttackRoll());
                 return parent.getLocation();
