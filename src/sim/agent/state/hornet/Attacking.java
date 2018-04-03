@@ -37,12 +37,13 @@ public class Attacking extends State {
             return parent.getLocation();
         }
         else {
-            Coordinate targetVector = VectorToCoordinate(parent.getLocation(), target.getLocation());
+
             if(isProximate(target.getLocation())){
                 target.Damage(parent.AttackRoll());
                 return parent.getLocation();
             }
             else{
+                Coordinate targetVector = VectorToCoordinate(parent.getLocation(), target.getLocation());
                 return new Coordinate(parent.getLocation().X() + targetVector.X(),
                         parent.getLocation().Y() + targetVector.Y());
             }

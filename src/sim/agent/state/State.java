@@ -67,6 +67,9 @@ public abstract  class State {
             case 7:
                 vector = Defaults.CARDINAL_VECTOR.get("SOUTHWEST");
                 break;
+            case 8:
+                vector = Defaults.CARDINAL_VECTOR.get("WEST");
+                break;
             default:
                 vector = new Coordinate(0, 0);
                 break;

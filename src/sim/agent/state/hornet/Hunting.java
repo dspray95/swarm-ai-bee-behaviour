@@ -80,7 +80,7 @@ public class Hunting extends State {
         double distanceToClosestBee = Defaults.ENVIRONMENT_SIZE; //ToDo: potential issue here if sim environemnt size is greater than the default size
         for(Bee bee : perceivedBees){
             double distanceToBee = parent.getLocation().DistanceTo(bee.getLocation());
-            if(distanceToBee < distanceToClosestBee){
+            if(distanceToBee < distanceToClosestBee && bee.getHP() > 0){
                 closestBee = bee;
                 distanceToClosestBee = distanceToBee;
             }
