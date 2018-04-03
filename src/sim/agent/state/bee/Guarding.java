@@ -3,6 +3,7 @@ package sim.agent.state.bee;
 import sim.Coordinate;
 import sim.agent.Agent;
 import sim.agent.state.State;
+import sim.config.Defaults;
 
 import java.util.Random;
 
@@ -13,7 +14,6 @@ public class Guarding extends State {
 
     public Guarding(Agent parent) {
         super(parent);
-        System.out.println("NEW GUARDING STATE");
         threshold = 50;
     }
 
@@ -34,19 +34,20 @@ public class Guarding extends State {
                 parent.setState(new Mobbing(parent));
                 return parent.getLocation();
             }
+            else if(parent.getLocation().DistanceTo(threat.getLocation()) >= parent.getParent().getOptions().getPerceptionDistance()/2) {
+                return Threaten();
+            }
+            else if(new Random().nextInt(10) > 1){
+                return Retreat();
+            }
             else{
-                if(new Random().nextInt(10) > 1){
-                    return Retreat();
-                }
-                else{
-                    return RandomWalk();
-                }
+                return RandomWalk();
             }
         }
         else{
             //do patrolling things
+            return RandomWalk();
         }
-        return RandomWalk();
     }
 
     /**
@@ -80,6 +81,11 @@ public class Guarding extends State {
             targetVector.setY(targetVector.Y() * -1);
         }
         //vector to actual location;
+        return new Coordinate(parent.getLocation().X() + targetVector.X(), parent.getLocation().Y() + targetVector.Y());
+    }
+
+    public Coordinate Threaten() {
+        Coordinate targetVector = VectorToCoordinate(parent.getLocation(), threat.getLocation());
         return new Coordinate(parent.getLocation().X() + targetVector.X(), parent.getLocation().Y() + targetVector.Y());
     }
 

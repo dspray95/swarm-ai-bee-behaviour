@@ -24,7 +24,6 @@ public class Pheromone implements TickListener{
         if(!removed) {
             this.strength -= 0.1d; //pheromone strength decay over time
             if (this.strength <= 0) {
-                System.out.println("removing pheremone...");
                 parent.RemovePheromone(this);
                 removed = true;
             }

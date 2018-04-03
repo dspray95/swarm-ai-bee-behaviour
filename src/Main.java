@@ -44,7 +44,8 @@ public class Main {
             options.setPheromoneStrength(500);
         }
         sim = new Simulation(options);
-        sim.runForTicks(1000);
+        sim.runForTicks(500);
+
         if(options.isWriteLogFile()) {
             logger = sim.getLogger();
             try {
@@ -53,6 +54,7 @@ public class Main {
                 System.out.println(e);
             }
         }
+
     }
 
     public static Options ParseArgs(String[] args) {

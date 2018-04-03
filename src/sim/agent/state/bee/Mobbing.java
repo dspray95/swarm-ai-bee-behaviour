@@ -13,6 +13,6 @@ public class Mobbing extends State {
 
     @Override
     public Coordinate GetTarget() {
-        return null;
+        return parent.getLocation();
     }
 }
