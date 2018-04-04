@@ -30,15 +30,17 @@ public class Guarding extends State {
     @Override
     public Coordinate GetTarget() {
         if(threat != null){
-            if(getWillingness() > new Random().nextInt(100)){
-                parent.setState(new Mobbing(parent));
-                return parent.getLocation();
-            }
-            else if(parent.getLocation().DistanceTo(threat.getLocation()) >= parent.getParent().getOptions().getPerceptionDistance()/2) {
-                return Threaten();
-            }
-            else if(new Random().nextInt(10) > 1){
-                return Retreat();
+//            if(getWillingness() > new Random().nextInt(100)){
+//                parent.setState(new Mobbing(parent));
+//                return parent.getLocation();
+//            }
+            if(new Random().nextInt(10) > 1) {
+                if (parent.getLocation().DistanceTo(threat.getLocation()) >= parent.getParent().getOptions().getPerceptionDistance() / 2.5) {
+                    return Threaten();
+                }
+                else {
+                    return Retreat();
+                    }
             }
             else{
                 return RandomWalk();
@@ -54,20 +56,20 @@ public class Guarding extends State {
      * Willingness if a function of the distance to the threat, the number of nearby bees, and the aggression of the parent
      * agent
      * willingness w = inverse square of distance (d) * aggression (a) * size of mob(c)
+     *               = sqrt(d)/d^2 * a * c
      * if c = 0 then c = c + 1;
      * @return
      */
     public double getWillingness(){
         double distance = parent.getLocation().DistanceTo(threat.getLocation());
-        double inverseSquareDistance = Math.sqrt(distance)/Math.exp(distance);
         double aggression = parent.getAggression();
         double mobSize = parent.getPerceptor().getPerceivedMobSize();
-
+        //If the mob size <= 0, we need to give it some value, otherwise the mob would never start.
         if(mobSize <= 0){
-            mobSize++;
+            mobSize = 1;
         }
-
-        return inverseSquareDistance * aggression * mobSize;
+        double willingness =  (aggression * mobSize)/distance;
+        return (aggression * mobSize)/distance;
     }
 
     public Coordinate Retreat(){

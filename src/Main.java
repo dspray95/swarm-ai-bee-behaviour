@@ -39,8 +39,9 @@ public class Main {
             options = new Options();
             options.setCohesionRate(5);
             options.setWriteLogFile(true);
-            options.setAggressionSetting(AggressionSetting.RANDOM_SPREAD);
+            options.setAggressionSetting(AggressionSetting.CLOSE_TO_VALUE);
             options.setAggression(0.5d);
+            options.setPerceptionDistance(16);
             options.setPheromoneStrength(500);
         }
         sim = new Simulation(options);

@@ -31,7 +31,8 @@ public class Coordinate {
     public double DistanceTo(Coordinate c){
         double xDist = Math.pow(this.X() - c.X(), 2);
         double yDist = Math.pow(this.Y() - c.Y(), 2);
-        return xDist + yDist;
+        return Math.sqrt(xDist + yDist);
+//        return (this.X() - c.X()) + (this.Y() - c.Y());
     }
 
     /**
