@@ -30,17 +30,17 @@ public class Guarding extends State {
     @Override
     public Coordinate GetTarget() {
         if(threat != null){
-//            if(getWillingness() > new Random().nextInt(100)){
-//                parent.setState(new Mobbing(parent));
-//                return parent.getLocation();
-//            }
+            if(getWillingness() > new Random().nextInt(100)){
+                parent.setState(new Mobbing(parent));
+                return parent.getLocation();
+            }
             if(new Random().nextInt(10) > 1) {
-                if (parent.getLocation().DistanceTo(threat.getLocation()) >= parent.getParent().getOptions().getPerceptionDistance() / 2.5) {
+                if (parent.getLocation().DistanceTo(threat.getLocation()) >= parent.getParent().getOptions().getPerceptionDistance() / 1.5) {
                     return Threaten();
                 }
                 else {
                     return Retreat();
-                    }
+                }
             }
             else{
                 return RandomWalk();

@@ -1,28 +1,9 @@
-import javafx.animation.*;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
-import javafx.geometry.Bounds;
-import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.LineTo;
-import javafx.scene.shape.MoveTo;
-import javafx.scene.shape.Path;
-import javafx.scene.shape.Rectangle;
-import javafx.stage.Stage;
-import javafx.util.Duration;
-import sim.Coordinate;
 import sim.Logger;
 import sim.Simulation;
 import sim.config.AggressionSetting;
 import sim.config.Options;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 public class Main {
 
@@ -39,6 +20,7 @@ public class Main {
             options = new Options();
             options.setCohesionRate(5);
             options.setWriteLogFile(true);
+            options.setWriteSwarmFile(true);
             options.setAggressionSetting(AggressionSetting.CLOSE_TO_VALUE);
             options.setAggression(0.5d);
             options.setPerceptionDistance(16);
@@ -47,11 +29,20 @@ public class Main {
         sim = new Simulation(options);
         sim.runForTicks(500);
 
-        if(options.isWriteLogFile()) {
+        if(options.isWriteSwarmFile()) {
             logger = sim.getLogger();
             try {
-                logger.WriteFile();
+                logger.WriteSwarmFile();
             } catch (IOException e) {
+                System.out.println(e);
+            }
+        }
+
+        if(options.isWriteLogFile()){
+            logger = sim.getLogger();
+            try{
+                logger.WriteLogFIle(sim);
+            } catch (IOException e){
                 System.out.println(e);
             }
         }
