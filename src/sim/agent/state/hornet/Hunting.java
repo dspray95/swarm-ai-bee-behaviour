@@ -31,25 +31,14 @@ public class Hunting extends State {
     public Coordinate GetTarget() {
         if(CheckForTarget()){
             parent.setState(new Attacking(parent, targetBee));
-            Coordinate targetVector = VectorToCoordinate(parent.getLocation(), targetBee.getLocation());
-            return new Coordinate(parent.getLocation().X() + targetVector.X(),
-                    parent.getLocation().Y() + targetVector.Y());
+            return GetBestVector(targetBee.getLocation());
         }
         else if(new Random().nextInt(100) < 75) {
-            return GetBestVector()
+            return GetBestVector(parent.getPerceptor().GetPerceivedCenterpoint());
         }
         else{
             return RandomWalk();
         }
-    }
-
-    /**Move closer to the center of the swarm
-     * @return
-     */
-    public Coordinate MoveToCenter(){
-        Coordinate current = parent.getLocation();
-        Coordinate cohesiveVector = VectorToCoordinate(current, parent.getPerceptor().GetPerceivedCenterpoint());
-        return new Coordinate(current.X() + cohesiveVector.X(), current.Y() + cohesiveVector.Y());
     }
 
     /**
@@ -68,7 +57,6 @@ public class Hunting extends State {
             targetBee = closestBee;
             return GetValidTarget(closestBee, perceivedBees);
         }
-
     }
 
     /** Finds the closest potential target bee

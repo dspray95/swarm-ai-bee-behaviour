@@ -20,6 +20,6 @@ public class Mobbing extends State {
 
     @Override
     public Coordinate GetTarget() {
-
+        return GetBestVector(target.getLocation());
     }
 }

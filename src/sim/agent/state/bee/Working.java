@@ -32,9 +32,7 @@ public class Working extends State {
     public Coordinate CohesiveRandomWalk(){
         Random r = new Random();
         if(r.nextInt(100) <= cohesionRate){
-            Coordinate current = parent.getLocation();
-            Coordinate cohesiveVector = VectorToCoordinate(current, parent.getPerceptor().GetPerceivedCenterpoint());
-            return new Coordinate(current.X() + cohesiveVector.X(), current.Y() + cohesiveVector.Y());
+            return GetBestVector(parent.getPerceptor().GetPerceivedCenterpoint());
         }
         else{
             return RandomWalk();

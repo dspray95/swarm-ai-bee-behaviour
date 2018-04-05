@@ -83,12 +83,14 @@ public class Guarding extends State {
             targetVector.setY(targetVector.Y() * -1);
         }
         //vector to actual location;
-        return new Coordinate(parent.getLocation().X() + targetVector.X(), parent.getLocation().Y() + targetVector.Y());
+        Coordinate absoluteVector = new Coordinate (targetVector.X() * (parent.getOptions().getPerceptionDistance()/2),
+                targetVector.Y() * (parent.getOptions().getPerceptionDistance()/2));
+
+        return GetBestVector(absoluteVector);
     }
 
     public Coordinate Threaten() {
-        Coordinate targetVector = VectorToCoordinate(parent.getLocation(), threat.getLocation());
-        return new Coordinate(parent.getLocation().X() + targetVector.X(), parent.getLocation().Y() + targetVector.Y());
+        return GetBestVector(threat.getLocation());
     }
 
     public void setThreat(Agent threat){
