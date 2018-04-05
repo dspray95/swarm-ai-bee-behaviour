@@ -2,6 +2,7 @@ package sim.agent.state;
 
 import sim.Coordinate;
 import sim.agent.Agent;
+import sim.agent.Bee;
 import sim.config.Defaults;
 
 import java.util.Random;
@@ -24,6 +25,34 @@ public abstract  class State {
         return new Coordinate(currentPos.X() + nextVector.X(), currentPos.Y() + nextVector.Y());
     }
 
+    public Coordinate GetBestVector(Coordinate target){
+        Coordinate bestCoordinate = parent.getLocation();
+        double bestDistance = bestCoordinate.DistanceTo(target);
+
+        for(Coordinate vector : Defaults.VECTORS){
+            double vectorDistance = 0;
+            Coordinate absoluteVector = new Coordinate(vector.X() + parent.getLocation().X(), vector.Y() + parent.getLocation().Y());
+            //Do some checking to make sure that the coordinate isnt already occupied
+            for(Bee agent : parent.getPerceptor().GetPerceivedBees()){
+                if(absoluteVector.X() == agent.getLocation().X() && absoluteVector.Y() == agent.getLocation().Y()){
+                    vectorDistance = -1;
+                }
+            }
+            if(absoluteVector.X() == target.X() && absoluteVector.Y() == target.Y()){
+                vectorDistance = -1;
+            }
+            //if the position isnt occupied calculate the distance
+            if(vectorDistance >= 0){
+                vectorDistance = absoluteVector.DistanceTo(target);
+                if(vectorDistance <= bestDistance){
+                    bestDistance = vectorDistance;
+                    bestCoordinate = absoluteVector;
+                }
+            }
+        }
+
+        return bestCoordinate;
+    }
     /**
      * Given a current and target coordinate, returns the vector heading from current to target
      * @param current

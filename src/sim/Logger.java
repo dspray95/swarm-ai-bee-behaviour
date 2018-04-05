@@ -55,6 +55,7 @@ public class Logger {
 
     public void WriteLogFIle(Simulation sim) throws IOException {
         System.out.println("WRITING LOG FILE...");
+        //gather up infomration
         int numWorking = 0;
         int numGuarding = 0;
         int numMobbing = 0;
@@ -79,9 +80,10 @@ public class Logger {
                 numPerceivingHornet++;
             }
         }
+        //create file and write
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
         Date date = new Date();
-        String filepath = System.getProperty("user.home") + File.separator + "log";
+        String filepath = System.getProperty("user.home") + File.separator + "swarm-ai-mobbing" + File.separator + "log";
         File file = new File(filepath);
         file.mkdirs();
         filepath = filepath + File.separator + dateFormat.format(date) + ".LOG";
@@ -102,7 +104,7 @@ public class Logger {
         ArrayList<String> coordinatesToString = new ArrayList<>();
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
         Date date = new Date();
-        String filepath = System.getProperty("user.home") + File.separator + "swarmlogs";
+        String filepath = System.getProperty("user.home") + File.separator + "swarm-ai-mobbing" + File.separator + "swarmlogs";
         File file = new File(filepath);
         file.mkdirs();
         filepath = filepath + File.separator + dateFormat.format(date) + ".SWARM";

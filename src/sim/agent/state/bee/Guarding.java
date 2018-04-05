@@ -31,7 +31,7 @@ public class Guarding extends State {
     public Coordinate GetTarget() {
         if(threat != null){
             if(getWillingness() > new Random().nextInt(100)){
-                parent.setState(new Mobbing(parent));
+                parent.setState(new Mobbing(parent, threat));
                 return parent.getLocation();
             }
             if(new Random().nextInt(10) > 1) {

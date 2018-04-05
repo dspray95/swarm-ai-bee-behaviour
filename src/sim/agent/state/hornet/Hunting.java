@@ -36,7 +36,7 @@ public class Hunting extends State {
                     parent.getLocation().Y() + targetVector.Y());
         }
         else if(new Random().nextInt(100) < 75) {
-            return MoveToCenter();
+            return GetBestVector()
         }
         else{
             return RandomWalk();
