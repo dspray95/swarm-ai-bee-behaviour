@@ -7,7 +7,7 @@ public class Dead extends State {
 
     public Dead(Agent parent) {
         super(parent);
-        parent.setPheromone(parent.getOptions().getPheromoneStrength() * 2);
+        parent.PlacePheromone(parent.getOptions().getPheromoneStrength() * 2);
     }
 
     @Override

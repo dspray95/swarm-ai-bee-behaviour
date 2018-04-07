@@ -7,6 +7,8 @@ import sim.agent.module.Actuator;
 import sim.agent.module.Perceptor;
 import sim.agent.state.Dead;
 import sim.agent.state.State;
+import sim.agent.state.bee.Guarding;
+import sim.agent.state.bee.Working;
 import sim.config.Options;
 
 import java.util.Random;
@@ -64,10 +66,23 @@ public abstract class Agent implements TickListener {
     }
 
 
-    public void setPheromone(int strength){
+    public void PlacePheromone(int strength){
         Pheromone pheromone = new Pheromone(parent, this.location, strength, options.getPerceptionDistance()*1.25);
         parent.AddPheremone(pheromone);
         pheromoneSet = true;
+    }
+
+    public void PheromonePerceived(Pheromone pheromone){
+        IncreaseAlertLevel(pheromone.getStrength());
+        if(alertLevel > 100 && state.getClass() == Working.class){
+            Guarding guarding = new Guarding(this);
+            guarding.setTriggerPheromone(pheromone);
+            this.state = guarding;
+        }
+    }
+
+    public void IncreaseAlertLevel(double alertLevel) {
+        this.alertLevel += alertLevel;
     }
 
     public boolean isPheromoneSet() {
@@ -76,10 +91,6 @@ public abstract class Agent implements TickListener {
 
     public double getAlertLevel() {
         return alertLevel;
-    }
-
-    public void increaseAlertLevel(double alertLevel) {
-        this.alertLevel += alertLevel;
     }
 
 

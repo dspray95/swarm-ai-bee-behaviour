@@ -2,14 +2,16 @@ package sim.agent.state.bee;
 
 import sim.Coordinate;
 import sim.agent.Agent;
+import sim.agent.Pheromone;
 import sim.agent.state.State;
 
 import java.util.Random;
 
 public class Guarding extends State {
 
-    Agent threat;
-    int threshold;
+    private Agent threat;
+    private int threshold;
+    private Pheromone triggerPheromone;
 
     public Guarding(Agent parent) {
         super(parent);
@@ -29,6 +31,11 @@ public class Guarding extends State {
     @Override
     public Coordinate GetTarget() {
         Coordinate centerPoint = new Coordinate(parent.getOptions().getEnvironmentSize(), parent.getOptions().getEnvironmentSize());
+
+        if(threat == null && parent.getPerceptor().isThreatPerceived()){
+            threat = parent.getPerceptor().getThreat();
+        }
+
         if(threat != null){
             if(getWillingness() > new Random().nextInt(100)){
                 parent.setState(new Mobbing(parent, threat));
@@ -45,6 +52,9 @@ public class Guarding extends State {
             else{
                 return RandomWalk();
             }
+        }
+        else if(triggerPheromone != null){
+            return GetBestVector(triggerPheromone.getLocation());
         }
         else{
             //do patrolling things
@@ -95,5 +105,9 @@ public class Guarding extends State {
 
     public void setThreat(Agent threat){
         this.threat = threat;
+    }
+
+    public void setTriggerPheromone(Pheromone p){
+        this.triggerPheromone = p;
     }
 }

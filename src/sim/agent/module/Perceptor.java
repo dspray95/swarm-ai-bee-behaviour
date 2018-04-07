@@ -58,7 +58,7 @@ public class Perceptor {
 
         for (Pheromone p : environment.getPheromones()){
             if(parent.getLocation().CircleIntersects(p.getLocation(), p.getRadius(), perceptionDistance)){
-                parent.increaseAlertLevel(p.getStrength());
+                parent.PheromonePerceived(p);
             }
         }
 
