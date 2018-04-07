@@ -28,14 +28,14 @@ public class Guarding extends State {
      */
     @Override
     public Coordinate GetTarget() {
-        Coordinate centerpoint = parent.getPerceptor().getActualSwarmCenterpoint();
+        Coordinate centerPoint = new Coordinate(parent.getOptions().getEnvironmentSize(), parent.getOptions().getEnvironmentSize());
         if(threat != null){
             if(getWillingness() > new Random().nextInt(100)){
                 parent.setState(new Mobbing(parent, threat));
                 return parent.getLocation();
             }
             if(new Random().nextInt(10) > 1) {
-                if (parent.getLocation().DistanceTo(centerpoint) > threat.getLocation().DistanceTo(centerpoint)){
+                if (parent.getLocation().DistanceTo(centerPoint) > threat.getLocation().DistanceTo(centerPoint)){
                     return GetBestVector(parent.getPerceptor().getActualSwarmCenterpoint(), VectorToTarget(parent.getLocation(), threat.getLocation()));
                 }
                 else if (parent.getLocation().DistanceTo(threat.getLocation()) >= parent.getParent().getOptions().getPerceptionDistance() / 1.5) {

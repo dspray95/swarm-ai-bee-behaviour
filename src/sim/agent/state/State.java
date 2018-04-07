@@ -18,9 +18,7 @@ public abstract  class State {
     public abstract Coordinate GetTarget();
 
     public Coordinate RandomWalk(){
-        Random r = new Random();
-
-        Coordinate nextVector = Defaults.VECTORS[r.nextInt(Defaults.VECTORS.length)];
+        Coordinate nextVector = Defaults.VECTORS[new Random().nextInt(Defaults.VECTORS.length)];
         return GetBestVector(VectorToCoordinate(nextVector, parent.getLocation()));
     }
 
@@ -30,7 +28,7 @@ public abstract  class State {
 
         for(Coordinate vector : Defaults.VECTORS){
             double vectorDistance = 0;
-            Coordinate absoluteVector = new Coordinate(vector.X() + parent.getLocation().X(), vector.Y() + parent.getLocation().Y());
+            Coordinate absoluteVector = VectorToCoordinate(vector, parent.getLocation());
             //Do some checking to make sure that the coordinate isnt already occupied
             //Check vector isnt on disallowed list
             if(disallowed.length > 0){
@@ -51,9 +49,9 @@ public abstract  class State {
                 }
             }
             //Check vector isnt already occupied by target
-            if (absoluteVector.Equals(target)){
-                vectorDistance = -1;
-            }
+//            if (absoluteVector.Equals(target)){
+//                vectorDistance = -1;
+//            }
 
             //if the position isn't occupied calculate the distance
             if(vectorDistance >= 0){
@@ -120,6 +118,15 @@ public abstract  class State {
         return new Coordinate(vector.X(), vector.Y()); //Return a new coordinate object as return Defaults vectors can result in strange behaviour
     }
 
+    /**
+     * Get the absolute value of the sum of two coordinates ie
+     *  Coordinate vector = {0,1}
+     *  Coordinate current location = {100,100}
+     *  return {100, 101}
+     * @param vector
+     * @param currentLocation
+     * @return
+     */
     public Coordinate VectorToCoordinate(Coordinate vector, Coordinate currentLocation){
         return new Coordinate(vector.X() + currentLocation.X(), vector.Y() + currentLocation.Y());
     }

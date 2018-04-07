@@ -39,11 +39,9 @@ public class Simulation {
     }
 
     public boolean runForTicks(int numTicks){
-
         for(int i = 0; i<=numTicks; i++){
             this.Tick();
             logger.logPositions(this);
-            System.out.println("tick " + i);
         }
         return true;
     }
