@@ -7,6 +7,7 @@ import sim.agent.Hornet;
 import sim.agent.Pheromone;
 import sim.agent.listener.TickListener;
 import sim.config.Options;
+import sun.security.ssl.Debug;
 
 import java.util.ArrayList;
 
@@ -42,6 +43,7 @@ public class Simulation {
         for(int i = 0; i<=numTicks; i++){
             this.Tick();
             logger.logPositions(this);
+            System.out.println("tick " + i);
         }
         return true;
     }

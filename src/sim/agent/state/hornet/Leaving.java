@@ -34,7 +34,7 @@ public class Leaving extends State {
     public Coordinate getLeaveTarget(){
         //First we need to get the vector to the center of the swarm
         Coordinate current = parent.getLocation();
-        Coordinate targetVector = VectorToCoordinate(current, parent.getPerceptor().getActualSwarmCenterpoint());
+        Coordinate targetVector = VectorToTarget(current, parent.getPerceptor().getActualSwarmCenterpoint());
 //        then we can invert it
         if(targetVector.X() != 0){
             targetVector.setX(targetVector.X() * -1);

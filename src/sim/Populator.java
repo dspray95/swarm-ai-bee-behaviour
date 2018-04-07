@@ -47,6 +47,10 @@ public class Populator {
 
     public double getAggression(){
         double aggressionVal = options.getAggression();
+        //value may be zero for testing purposes occasionally
+        if(aggressionVal == 0){
+            return 0;
+        }
 
         switch(options.getAggressionSetting()){
             case UNIFORM:

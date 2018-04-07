@@ -27,7 +27,7 @@ public class Actuator {
         }
         else { //If the target coordinate is already occupied - we can't move, so return false
             for (Agent agent : parent.getPerceptor().GetPerceivedBees()) {
-                if (agent.getLocation().X() == target.X() && agent.getLocation().Y() == target.Y()) {
+                if (agent.getLocation().X() == target.X() && agent.getLocation().Y() == target.Y() && agent != parent) { //also make sure that we can stay in the current coord
                     return false;
                 }
             }
@@ -41,4 +41,5 @@ public class Actuator {
             return true;
         }
     }
+
 }

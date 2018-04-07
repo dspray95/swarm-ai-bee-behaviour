@@ -22,9 +22,9 @@ public class Main {
             options.setWriteLogFile(true);
             options.setWriteSwarmFile(true);
             options.setAggressionSetting(AggressionSetting.CLOSE_TO_VALUE);
-            options.setAggression(0.5d);
+            options.setAggression(0d);
             options.setPerceptionDistance(16);
-            options.setPheromoneStrength(500);
+            options.setPheromoneStrength(90);
         }
         sim = new Simulation(options);
         sim.runForTicks(500);

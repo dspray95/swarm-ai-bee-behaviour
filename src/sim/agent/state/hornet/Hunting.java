@@ -65,7 +65,7 @@ public class Hunting extends State {
      */
     public Bee GetClosestBee(ArrayList<Bee> perceivedBees){
         Bee closestBee = null;
-        double distanceToClosestBee = Defaults.ENVIRONMENT_SIZE; //ToDo: potential issue here if sim environemnt size is greater than the default size
+        double distanceToClosestBee = parent.getOptions().getEnvironmentSize();
         for(Bee bee : perceivedBees){
             double distanceToBee = parent.getLocation().DistanceTo(bee.getLocation());
             if(distanceToBee < distanceToClosestBee && bee.getHP() > 0){

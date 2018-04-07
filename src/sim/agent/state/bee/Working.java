@@ -31,7 +31,7 @@ public class Working extends State {
 
     public Coordinate CohesiveRandomWalk(){
         Random r = new Random();
-        if(r.nextInt(100) <= cohesionRate){
+        if(r.nextInt(100) < cohesionRate){
             return GetBestVector(parent.getPerceptor().GetPerceivedCenterpoint());
         }
         else{

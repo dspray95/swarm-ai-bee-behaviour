@@ -18,14 +18,13 @@ public abstract  class State {
     public abstract Coordinate GetTarget();
 
     public Coordinate RandomWalk(){
-        Coordinate currentPos = parent.getLocation();
         Random r = new Random();
 
         Coordinate nextVector = Defaults.VECTORS[r.nextInt(Defaults.VECTORS.length)];
-        return new Coordinate(currentPos.X() + nextVector.X(), currentPos.Y() + nextVector.Y());
+        return GetBestVector(VectorToCoordinate(nextVector, parent.getLocation()));
     }
 
-    public Coordinate GetBestVector(Coordinate target){
+    public Coordinate GetBestVector(Coordinate target, Coordinate... disallowed){
         Coordinate bestCoordinate = parent.getLocation();
         double bestDistance = bestCoordinate.DistanceTo(target);
 
@@ -33,18 +32,33 @@ public abstract  class State {
             double vectorDistance = 0;
             Coordinate absoluteVector = new Coordinate(vector.X() + parent.getLocation().X(), vector.Y() + parent.getLocation().Y());
             //Do some checking to make sure that the coordinate isnt already occupied
-            for(Bee agent : parent.getPerceptor().GetPerceivedBees()){
-                if(absoluteVector.X() == agent.getLocation().X() && absoluteVector.Y() == agent.getLocation().Y()){
+            //Check vector isnt on disallowed list
+            if(disallowed.length > 0){
+                if(vector.equals(disallowed[0])){
                     vectorDistance = -1;
                 }
             }
-            if(absoluteVector.X() == target.X() && absoluteVector.Y() == target.Y()){
+            //Check vector isnt already occupied by other bees
+            for (Bee agent : parent.getPerceptor().GetPerceivedBees()) {
+                if (absoluteVector.Equals(agent.getLocation())) {
+                    vectorDistance = -1;
+                }
+            }
+            //If we can see a threat make sure the vector isnt occupied by it
+            if (parent.getPerceptor().isThreatPerceived()){
+                if(parent.getPerceptor().getThreat().getLocation().Equals(absoluteVector)){
+                    vectorDistance = -1;
+                }
+            }
+            //Check vector isnt already occupied by target
+            if (absoluteVector.Equals(target)){
                 vectorDistance = -1;
             }
-            //if the position isnt occupied calculate the distance
+
+            //if the position isn't occupied calculate the distance
             if(vectorDistance >= 0){
                 vectorDistance = absoluteVector.DistanceTo(target);
-                if(vectorDistance <= bestDistance){
+                if(vectorDistance <= bestDistance){ //<= means a preference to moving rather than staying still
                     bestDistance = vectorDistance;
                     bestCoordinate = absoluteVector;
                 }
@@ -59,7 +73,7 @@ public abstract  class State {
      * @param target
      * @return
      */
-    public Coordinate VectorToCoordinate(Coordinate current, Coordinate target){
+    public Coordinate VectorToTarget(Coordinate current, Coordinate target){
         double angle;
         double cardinality;
         Coordinate vector;
@@ -104,5 +118,9 @@ public abstract  class State {
                 break;
         }
         return new Coordinate(vector.X(), vector.Y()); //Return a new coordinate object as return Defaults vectors can result in strange behaviour
+    }
+
+    public Coordinate VectorToCoordinate(Coordinate vector, Coordinate currentLocation){
+        return new Coordinate(vector.X() + currentLocation.X(), vector.Y() + currentLocation.Y());
     }
 }

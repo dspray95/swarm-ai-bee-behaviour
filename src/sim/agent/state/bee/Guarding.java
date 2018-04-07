@@ -3,7 +3,6 @@ package sim.agent.state.bee;
 import sim.Coordinate;
 import sim.agent.Agent;
 import sim.agent.state.State;
-import sim.config.Defaults;
 
 import java.util.Random;
 
@@ -29,13 +28,17 @@ public class Guarding extends State {
      */
     @Override
     public Coordinate GetTarget() {
+        Coordinate centerpoint = parent.getPerceptor().getActualSwarmCenterpoint();
         if(threat != null){
             if(getWillingness() > new Random().nextInt(100)){
                 parent.setState(new Mobbing(parent, threat));
                 return parent.getLocation();
             }
             if(new Random().nextInt(10) > 1) {
-                if (parent.getLocation().DistanceTo(threat.getLocation()) >= parent.getParent().getOptions().getPerceptionDistance() / 1.5) {
+                if (parent.getLocation().DistanceTo(centerpoint) > threat.getLocation().DistanceTo(centerpoint)){
+                    return GetBestVector(parent.getPerceptor().getActualSwarmCenterpoint(), VectorToTarget(parent.getLocation(), threat.getLocation()));
+                }
+                else if (parent.getLocation().DistanceTo(threat.getLocation()) >= parent.getParent().getOptions().getPerceptionDistance() / 1.5) {
                     return Threaten();
                 }
                 else {
@@ -74,19 +77,19 @@ public class Guarding extends State {
 
     public Coordinate Retreat(){
         //get our target vector
-        Coordinate targetVector = VectorToCoordinate(parent.getLocation(), threat.getLocation());
+        Coordinate targetVector = VectorToTarget(parent.getLocation(), threat.getLocation());
+        Coordinate centerVector = VectorToTarget(parent.getLocation(), parent.getPerceptor().getActualSwarmCenterpoint());
         //reverse target vector direction
-        if(targetVector.X() != 0){
-            targetVector.setX(targetVector.X() * -1);
+        Coordinate runAwayVector = new Coordinate();
+        if (targetVector.X() != 0) {
+            runAwayVector.setX(targetVector.X() * -1);
         }
-        if(targetVector.Y() != 0){
-            targetVector.setY(targetVector.Y() * -1);
+        if (targetVector.Y() != 0) {
+            runAwayVector.setY(targetVector.Y() * -1);
         }
-        //vector to actual location;
-        Coordinate absoluteVector = new Coordinate (targetVector.X() * (parent.getOptions().getPerceptionDistance()/2),
-                targetVector.Y() * (parent.getOptions().getPerceptionDistance()/2));
 
-        return GetBestVector(absoluteVector);
+        return GetBestVector(VectorToCoordinate(runAwayVector, parent.getLocation()));
+
     }
 
     public Coordinate Threaten() {

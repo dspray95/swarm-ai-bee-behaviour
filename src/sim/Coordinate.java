@@ -50,6 +50,10 @@ public class Coordinate {
         return radii > distance;
     }
 
+    public boolean Equals(Coordinate target){
+        return x == target.X() && y == target.Y();
+    }
+
     public int X() {
         return x;
     }
