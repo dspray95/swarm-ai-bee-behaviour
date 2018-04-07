@@ -35,10 +35,7 @@ public class Guarding extends State {
                 return parent.getLocation();
             }
             if(new Random().nextInt(10) > 1) {
-                if (parent.getLocation().DistanceTo(centerPoint) > threat.getLocation().DistanceTo(centerPoint)){
-                    return GetBestVector(parent.getPerceptor().getActualSwarmCenterpoint(), VectorToTarget(parent.getLocation(), threat.getLocation()));
-                }
-                else if (parent.getLocation().DistanceTo(threat.getLocation()) >= parent.getParent().getOptions().getPerceptionDistance() / 1.5) {
+                if (parent.getLocation().DistanceTo(threat.getLocation()) >= parent.getParent().getOptions().getPerceptionDistance() / 1.5) {
                     return Threaten();
                 }
                 else {
