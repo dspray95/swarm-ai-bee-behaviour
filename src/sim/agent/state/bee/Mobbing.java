@@ -15,11 +15,11 @@ public class Mobbing extends State {
     public Mobbing(Agent parent, Agent target) {
         super(parent);
         this.target = target;
-        System.out.println("NEW MOBBING STATE");
     }
 
     @Override
     public Coordinate GetTarget() {
+        //Todo more complex behaviour
         return GetBestVector(target.getLocation());
     }
 }

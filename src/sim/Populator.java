@@ -37,12 +37,11 @@ public class Populator {
                 }
             }
             Bee bee = new Bee(parent, location, getAggression());
-            parent.tickListeners.add(bee);
+            parent.getTickListeners().add(bee);
             parent.getSwarm().add(bee);
 
         }
-        parent.hornet = new Hornet(parent, new Coordinate(options.getEnvironmentSize()/2, options.getDeploymentArea()/2-50));
-        parent.tickListeners.add(parent.hornet);
+        parent.setHornet(new Hornet(parent, new Coordinate(options.getEnvironmentSize()/2, options.getDeploymentArea()/2-50)));
     }
 
     public double getAggression(){

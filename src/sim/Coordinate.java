@@ -1,5 +1,8 @@
 package sim;
 
+import sim.config.Defaults;
+
+import java.util.ArrayList;
 import java.util.Random;
 
 public class Coordinate {
@@ -48,6 +51,28 @@ public class Coordinate {
         double distance = Math.pow(this.x - target.X(), 2d) + Math.pow(this.y - target.Y(), 2d);
         double radii = Math.pow(targetRadius - thisRadius, 2d);
         return radii > distance;
+    }
+
+    /**
+     * Checks whether the target coordinate is next to this coordinate in 4 cardinal directions (N,E,S,W)
+     * @param target
+     * @return boolean isAdjacentTo
+     */
+    public boolean IsAdjacentTo(Coordinate target){
+        boolean adjacent = false;
+        ArrayList<Coordinate> vectors = new ArrayList<>();
+            vectors.add(Defaults.CARDINAL_VECTOR.get("NORTH"));
+            vectors.add(Defaults.CARDINAL_VECTOR.get("EAST"));
+            vectors.add(Defaults.CARDINAL_VECTOR.get("SOUTH"));
+            vectors.add(Defaults.CARDINAL_VECTOR.get("WEST"));
+
+        for(Coordinate vector : vectors){
+            Coordinate absoluteVector = new Coordinate(vector.X() + x, vector.Y() + y);
+            if(absoluteVector.equals(target)){
+                adjacent = true;
+            }
+        }
+        return adjacent;
     }
 
     public boolean Equals(Coordinate target){

@@ -28,7 +28,7 @@ public class Logger {
         hornetAlive = new ArrayList<>();
     }
 
-    public void logPositions(Simulation sim){
+    public void Log(Simulation sim){
         ArrayList<Bee> swarm = sim.getSwarm();
         Hornet hornet = sim.getHornet();
         if(initialised){
@@ -59,6 +59,7 @@ public class Logger {
         int numWorking = 0;
         int numGuarding = 0;
         int numMobbing = 0;
+        int activeMobSize = 0;    //Differs from numMobbing in that this value is the number of agents that are contributing to the heat generation in the mob
         int numPerceivingHornet = 0;
         int numDead = 0;
         for(Agent agent : sim.getSwarm()){
@@ -80,6 +81,7 @@ public class Logger {
                 numPerceivingHornet++;
             }
         }
+        activeMobSize = sim.getMob().getMobSize();
         //create file and write
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
         Date date = new Date();
@@ -95,6 +97,7 @@ public class Logger {
         bw.write("mobs:" + numMobbing + lineBreak);
         bw.write("dead:"+ numDead + lineBreak);
         bw.write("perceived_threat:" + numPerceivingHornet + lineBreak);
+        bw.write("active_mob_size:" + activeMobSize + lineBreak);
         bw.close();
         System.out.println("FINISHED WRITING LOG FILE");
     }

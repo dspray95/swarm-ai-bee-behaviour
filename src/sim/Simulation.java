@@ -1,24 +1,22 @@
 package sim;
 
-import com.sun.org.apache.bcel.internal.generic.PopInstruction;
-import sim.agent.Agent;
 import sim.agent.Bee;
 import sim.agent.Hornet;
 import sim.agent.Pheromone;
 import sim.agent.listener.TickListener;
 import sim.config.Options;
-import sun.security.ssl.Debug;
 
 import java.util.ArrayList;
 
 public class Simulation {
 
-    Options options;
-    ArrayList<Bee> swarm;
-    ArrayList<Pheromone> pheromones;
-    Hornet hornet;
-    ArrayList<TickListener> tickListeners;
-    Logger logger;
+    private Options options;
+    private ArrayList<Bee> swarm;
+    private ArrayList<Pheromone> pheromones;
+    private Hornet hornet;
+    private ArrayList<TickListener> tickListeners;
+    private Logger logger;
+    private Mob mob;
 
     public Simulation(Options options){
         this.swarm = new ArrayList<>();
@@ -26,6 +24,8 @@ public class Simulation {
         this.tickListeners = new ArrayList<>();
         this.options = options;
         this.logger = new Logger();
+        this.mob = new Mob(this);
+        this.tickListeners.add(mob);
         new Populator(this, options).Populate();
     }
 
@@ -41,7 +41,7 @@ public class Simulation {
     public boolean runForTicks(int numTicks){
         for(int i = 0; i<=numTicks; i++){
             this.Tick();
-            logger.logPositions(this);
+            logger.Log(this);
         }
         return true;
     }
@@ -65,6 +65,10 @@ public class Simulation {
         return this.hornet;
     }
 
+    public void setHornet(Hornet hornet){
+        this.hornet = hornet;
+        this.tickListeners.add(this.hornet);
+    }
     public Logger getLogger(){
         return this.logger;
     }
@@ -72,4 +76,13 @@ public class Simulation {
     public ArrayList<Pheromone> getPheromones(){
         return this.pheromones;
     }
+
+    public ArrayList<TickListener> getTickListeners(){
+        return this.tickListeners;
+    }
+
+    public Mob getMob(){
+        return this.mob;
+    }
 }
+

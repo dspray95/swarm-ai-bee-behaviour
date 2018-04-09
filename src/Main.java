@@ -22,7 +22,7 @@ public class Main {
             options.setWriteLogFile(true);
             options.setWriteSwarmFile(true);
             options.setAggressionSetting(AggressionSetting.CLOSE_TO_VALUE);
-            options.setAggression(0d);
+            options.setAggression(1d);
             options.setPerceptionDistance(16);
             options.setPheromoneStrength(90);
         }
