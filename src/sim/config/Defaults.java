@@ -46,4 +46,7 @@ public class Defaults {
     public static AggressionSetting AGGRESSION_SETTING = AggressionSetting.UNIFORM;
     public static double AGGRESSION_VALUE = 0.75d;
     public static int PHEROMONE_STRENGTH = 250;
+
+    //Average temperature in Osaka, Japan according to the Japanese Meteorological http://www.data.jma.go.jp/obd/stats/data/en/normal/normal.html
+    public static double BASE_TEMPERATURE = 19; //C
 }

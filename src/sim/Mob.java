@@ -2,6 +2,7 @@ package sim;
 
 import sim.agent.Agent;
 import sim.agent.listener.TickListener;
+import sim.config.Defaults;
 
 import java.util.ArrayList;
 
@@ -18,7 +19,9 @@ public class Mob extends ArrayList<Agent> implements TickListener {
     @Override
     public void Tick() {
         FindMobSize();
+        temperature = ((mobSize/10)*(mobSize/10)) + Defaults.BASE_TEMPERATURE;
     }
+
 
     public void FindMobSize(){
         mobSize = 0;
@@ -31,7 +34,7 @@ public class Mob extends ArrayList<Agent> implements TickListener {
             ArrayList<Agent> newFrontier = new ArrayList<>();
             for(Agent node : frontier){
                 for(Agent agent : this){
-                    if(agent.getLocation().IsAdjacentTo(node.getLocation()) && !closedList.contains(agent)){
+                    if(agent.getLocation().IsAdjacentTo(node.getLocation()) && !isInClosedList(agent, closedList)){
                         mobSize++;
                         newFrontier.add(agent);
                     }
@@ -43,6 +46,19 @@ public class Mob extends ArrayList<Agent> implements TickListener {
                 searching = false;
             }
         }
+    }
+
+    public boolean isInClosedList(Agent checkFor, ArrayList<Agent> closedList){
+        for(Agent agent : closedList){
+            if(checkFor.getLocation().Equals(agent.getLocation())){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public double getTemperature(){
+        return this.temperature;
     }
 
     public int getMobSize(){

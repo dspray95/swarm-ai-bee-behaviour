@@ -59,7 +59,6 @@ public class Coordinate {
      * @return boolean isAdjacentTo
      */
     public boolean IsAdjacentTo(Coordinate target){
-        boolean adjacent = false;
         ArrayList<Coordinate> vectors = new ArrayList<>();
             vectors.add(Defaults.CARDINAL_VECTOR.get("NORTH"));
             vectors.add(Defaults.CARDINAL_VECTOR.get("EAST"));
@@ -68,11 +67,11 @@ public class Coordinate {
 
         for(Coordinate vector : vectors){
             Coordinate absoluteVector = new Coordinate(vector.X() + x, vector.Y() + y);
-            if(absoluteVector.equals(target)){
-                adjacent = true;
+            if(absoluteVector.Equals(target)){
+                return true;
             }
         }
-        return adjacent;
+        return false;
     }
 
     public boolean Equals(Coordinate target){
