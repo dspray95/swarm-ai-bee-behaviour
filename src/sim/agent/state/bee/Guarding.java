@@ -39,7 +39,6 @@ public class Guarding extends State {
         if(threat != null){
             if(getWillingness() > new Random().nextInt(100)){
                 parent.setState(new Mobbing(parent, threat));
-                parent.getParent().getMob().add(parent);
                 return parent.getLocation();
             }
             if(new Random().nextInt(10) > 1) {

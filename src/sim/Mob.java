@@ -18,13 +18,13 @@ public class Mob extends ArrayList<Agent> implements TickListener {
 
     @Override
     public void Tick() {
-        FindMobSize();
+        this.mobSize = FindMobSize();
         temperature = ((mobSize/10)*(mobSize/10)) + Defaults.BASE_TEMPERATURE;
     }
 
 
-    public void FindMobSize(){
-        mobSize = 0;
+    public int FindMobSize(){
+        int mobSize = 0;
         ArrayList<Agent> closedList = new ArrayList<>();
         ArrayList<Agent> frontier = new ArrayList<>();
         frontier.add(parent.getHornet());
@@ -32,9 +32,10 @@ public class Mob extends ArrayList<Agent> implements TickListener {
         boolean searching = true;
         while(searching){
             ArrayList<Agent> newFrontier = new ArrayList<>();
+
             for(Agent node : frontier){
                 for(Agent agent : this){
-                    if(agent.getLocation().IsAdjacentTo(node.getLocation()) && !isInClosedList(agent, closedList)){
+                    if(agent.getLocation().IsAdjacentTo(node.getLocation()) && !isInList(agent, newFrontier) && !isInList(agent, closedList)){
                         mobSize++;
                         newFrontier.add(agent);
                     }
@@ -46,9 +47,10 @@ public class Mob extends ArrayList<Agent> implements TickListener {
                 searching = false;
             }
         }
+        return mobSize;
     }
 
-    public boolean isInClosedList(Agent checkFor, ArrayList<Agent> closedList){
+    public boolean isInList(Agent checkFor, ArrayList<Agent> closedList){
         for(Agent agent : closedList){
             if(checkFor.getLocation().Equals(agent.getLocation())){
                 return true;
