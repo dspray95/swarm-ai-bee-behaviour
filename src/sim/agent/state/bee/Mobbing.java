@@ -11,8 +11,8 @@ import java.util.Random;
 
 public class Mobbing extends State {
 
-    Agent target;
-    Mob mob;
+    private Agent target;
+    private Mob mob;
     public Mobbing(Agent parent, Agent target) {
         super(parent);
         this.target = target;
@@ -24,20 +24,31 @@ public class Mobbing extends State {
 
     @Override
     public Coordinate GetTarget() {
-        //Todo more complex behaviour
         /*
         If the temp is too high, try to leave
          */
-        ManageTemperature();
-        return GetBestVector(target.getLocation());
+        parent.setTemperature(mob.getTemperature() - (parent.getLocation().DistanceTo(target.getLocation())/2));
+        if(parent.getTemperature() >= Defaults.BEE_LETHAL_TEMPERATURE + parent.getAggression()){
+            System.out.println("bee too hot: " + parent.getTemperature() + "C");
+            return GetBestVector(LeaveMobVector());
+        }
+        else{
+            return GetBestVector(target.getLocation());
+        }
     }
 
-    public boolean ManageTemperature(){
-        double currentCenterTemperature = mob.getTemperature();
-        double currentLocationTemperature = currentCenterTemperature - (parent.getLocation().DistanceTo(target.getLocation())/2);
-        if(currentLocationTemperature >= Defaults.BEE_LETHAL_TEMPERATURE){
-
+    public Coordinate LeaveMobVector(){
+        //get the vector to center of the mob, will be the location of the hornet
+        Coordinate centerOfMob = VectorToTarget(parent.getLocation(), parent.getPerceptor().getThreat().getLocation());
+        //reverse target vector direction
+        Coordinate leaveVector = new Coordinate();
+        if (centerOfMob .X() != 0) {
+            leaveVector.setX(centerOfMob .X() * -1);
         }
-        return false;
+        if (centerOfMob .Y() != 0) {
+            leaveVector.setY(centerOfMob .Y() * -1);
+        }
+
+        return new Coordinate(leaveVector.X() + parent.getLocation().X(), leaveVector.Y() + parent.getLocation().Y());
     }
 }

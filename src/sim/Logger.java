@@ -19,6 +19,7 @@ public class Logger {
     ArrayList<Coordinate> hornetPositions;
     ArrayList<ArrayList<Boolean>> aliveList;
     ArrayList<Boolean> hornetAlive;
+    ArrayList<Double> mobTemperature;
     boolean initialised;
 
     public Logger(){
@@ -26,6 +27,7 @@ public class Logger {
         positionList = new ArrayList<>();
         aliveList = new ArrayList<>();
         hornetAlive = new ArrayList<>();
+        mobTemperature = new ArrayList<>();
     }
 
     public void Log(Simulation sim){
@@ -39,6 +41,7 @@ public class Logger {
             }
             hornetPositions.add(hornet.getLocation());
             hornetAlive.add(hornet.getHP() > 0);
+            mobTemperature.add(sim.getMob().getTemperature());
         }
         else{
             for(Agent agent : swarm){
@@ -49,6 +52,7 @@ public class Logger {
             }
             hornetPositions = new ArrayList<>();
             hornetAlive = new ArrayList<>();
+            mobTemperature.add(sim.getMob().getTemperature());
             initialised = true;
         }
     }
@@ -141,9 +145,16 @@ public class Logger {
             hornetLine = hornetLine + ":" + coord.X() + "," + coord.Y() + "," + (hornetAlive.get(hornetPositions.indexOf(coord)) ? 1 : 0);
         }
         bw.write(hornetLine);
+        bw.newLine();
+        String temperatureLine = "temp";
+        for(Double temp : mobTemperature){
+            temperatureLine = temperatureLine + ":" + temp;
+        }
+        bw.write(temperatureLine);
         bw.close();
         System.out.println("FINISHED WRITING SWARM FILE");
     }
+
     public ArrayList<ArrayList<Coordinate>> getPositionList() {
         return positionList;
     }

@@ -21,9 +21,9 @@ public class Main {
             options.setCohesionRate(5);
             options.setWriteLogFile(true);
             options.setWriteSwarmFile(true);
-            options.setAggressionSetting(AggressionSetting.CLOSE_TO_VALUE);
+            options.setAggressionSetting(AggressionSetting.UNIFORM);
             options.setAggression(1d);
-            options.setPerceptionDistance(16);
+            options.setPerceptionDistance(25);
             options.setPheromoneStrength(90);
         }
         sim = new Simulation(options);

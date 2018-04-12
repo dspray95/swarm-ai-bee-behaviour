@@ -19,7 +19,7 @@ public class Mob extends ArrayList<Agent> implements TickListener {
     @Override
     public void Tick() {
         this.mobSize = FindMobSize();
-        temperature = ((mobSize/10)*(mobSize/10)) + Defaults.BASE_TEMPERATURE;
+        temperature = ((mobSize/5)*(mobSize/5)) + Defaults.BASE_TEMPERATURE;
     }
 
 

@@ -9,6 +9,7 @@ import sim.agent.state.Dead;
 import sim.agent.state.State;
 import sim.agent.state.bee.Guarding;
 import sim.agent.state.bee.Working;
+import sim.config.Defaults;
 import sim.config.Options;
 
 import java.util.Random;
@@ -25,10 +26,11 @@ public abstract class Agent implements TickListener {
     protected int hp;
     protected int heatThreshold;
     protected int attackPoints;
+    protected int beesKilled;
+    protected double temperature;
     protected double aggression;
     protected double alertLevel;
     protected boolean pheromoneSet;
-    protected int beesKilled;
 
     public Agent(Simulation parent, Coordinate location){
         this.parent = parent;
@@ -37,6 +39,7 @@ public abstract class Agent implements TickListener {
         this.perceptor = new Perceptor(this);
         this.actuator = new Actuator(this);
         this.beesKilled = 0;
+        this.temperature = Defaults.BASE_TEMPERATURE;
     }
 
     public void Damage(int value){
@@ -139,6 +142,14 @@ public abstract class Agent implements TickListener {
 
     public State getState(){
         return this.state;
+    }
+
+    public double getTemperature(){
+        return this.temperature;
+    }
+
+    public void setTemperature(double temperature){
+        this.temperature = temperature;
     }
 
 }
