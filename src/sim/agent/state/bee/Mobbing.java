@@ -28,8 +28,7 @@ public class Mobbing extends State {
         If the temp is too high, try to leave
          */
         parent.setTemperature(mob.getTemperature() - (parent.getLocation().DistanceTo(target.getLocation())/2));
-        if(parent.getTemperature() >= Defaults.BEE_LETHAL_TEMPERATURE + parent.getAggression()){
-            System.out.println("bee too hot: " + parent.getTemperature() + "C");
+        if(parent.getTemperature() >= Defaults.BEE_LETHAL_TEMPERATURE - 1){
             return GetBestVector(LeaveMobVector());
         }
         else{

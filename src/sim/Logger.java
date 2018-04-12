@@ -9,6 +9,7 @@ import sim.agent.state.bee.Working;
 
 import java.io.*;
 import java.text.DateFormat;
+import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -148,7 +149,8 @@ public class Logger {
         bw.newLine();
         String temperatureLine = "temp";
         for(Double temp : mobTemperature){
-            temperatureLine = temperatureLine + ":" + temp;
+            DecimalFormat df = new DecimalFormat("###.##");
+            temperatureLine = temperatureLine + ":" + df.format(temp);
         }
         bw.write(temperatureLine);
         bw.close();

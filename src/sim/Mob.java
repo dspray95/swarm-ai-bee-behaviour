@@ -14,12 +14,28 @@ public class Mob extends ArrayList<Agent> implements TickListener {
 
     public Mob(Simulation parent){
         this.parent = parent;
+        this.temperature = Defaults.BASE_TEMPERATURE;
     }
 
     @Override
     public void Tick() {
         this.mobSize = FindMobSize();
-        temperature = ((mobSize/5)*(mobSize/5)) + Defaults.BASE_TEMPERATURE;
+        /*
+        Temperature = T1 + (T2-T1/T1)
+        Where:
+            T1 = current temperature
+        and T2 = (n/5)^2 + T1
+                where:
+                    n = mob size
+        So Temperature
+        = T1 + ((n/5)^2 + T1 - T1)/T1
+        = T1 + (n/5)^2 / T1
+         */
+        temperature = temperature + (((mobSize/5)*(mobSize/5))/Defaults.BASE_TEMPERATURE);
+
+        if(temperature > Defaults.BASE_TEMPERATURE){
+            temperature--;
+        }
     }
 
 
