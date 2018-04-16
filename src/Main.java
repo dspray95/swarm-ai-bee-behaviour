@@ -21,10 +21,11 @@ public class Main {
             options.setCohesionRate(5);
             options.setWriteLogFile(true);
             options.setWriteSwarmFile(true);
+            options.setPerceptionDistance(25);
             options.setAggressionSetting(AggressionSetting.UNIFORM);
             options.setAggression(1d);
-            options.setPerceptionDistance(25);
             options.setPheromoneStrength(90);
+            options.setSwarmSize(1000);
         }
         sim = new Simulation(options);
         sim.runForTicks(500);

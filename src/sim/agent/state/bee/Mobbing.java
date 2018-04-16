@@ -13,10 +13,13 @@ public class Mobbing extends State {
 
     private Agent target;
     private Mob mob;
+    private boolean leaving;
+
     public Mobbing(Agent parent, Agent target) {
         super(parent);
         this.target = target;
         this.mob = parent.getParent().getMob();
+        this.leaving = false;
         if(!mob.contains(parent)){
             this.mob.add(parent);
         }
@@ -27,9 +30,32 @@ public class Mobbing extends State {
         /*
         If the temp is too high, try to leave
          */
-        parent.setTemperature(mob.getTemperature() - (parent.getLocation().DistanceTo(target.getLocation())/2));
-        if(parent.getTemperature() >= Defaults.BEE_LETHAL_TEMPERATURE - 1){
-            return GetBestVector(LeaveMobVector());
+        parent.setTemperature(mob.getTemperature());
+        if(leaving){
+            if(parent.getLocation().DistanceTo(target.getLocation()) > parent.getOptions().getPerceptionDistance()/2){
+                mob.modifyCurrentlyLeaving(-1);
+                Guarding nextState = new Guarding(parent);
+                nextState.setThreat(target);
+                parent.setState(nextState);
+                return GetBestVector(target.getLocation());
+            }
+            else{
+                return GetBestVector(LeaveMobVector());
+            }
+        }
+        if(parent.getTemperature() >= Defaults.BEE_LETHAL_TEMPERATURE - 2){
+            Coordinate leavingVector = LeaveMobVector();
+            if(GetBestVector(leavingVector).Equals(parent.getLocation())){
+                return GetBestVector(target.getLocation());
+            }
+            else if(mob.getCurrentlyLeaving() < 3) {
+                mob.modifyCurrentlyLeaving(1);
+                leaving = true;
+                return GetBestVector(LeaveMobVector());
+            }
+            else{
+                return GetBestVector(target.getLocation());
+            }
         }
         else{
             return GetBestVector(target.getLocation());

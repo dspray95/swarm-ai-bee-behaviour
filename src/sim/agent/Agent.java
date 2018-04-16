@@ -23,10 +23,10 @@ public abstract class Agent implements TickListener {
     protected State state;
     protected Perceptor perceptor;
     protected Actuator actuator;
-    protected int hp;
     protected int heatThreshold;
     protected int attackPoints;
     protected int beesKilled;
+    protected double hp;
     protected double temperature;
     protected double aggression;
     protected double alertLevel;
@@ -42,7 +42,7 @@ public abstract class Agent implements TickListener {
         this.temperature = Defaults.BASE_TEMPERATURE;
     }
 
-    public void Damage(int value){
+    public void Damage(double value){
         this.hp -= value;
         System.out.println("Attacked for " + value + " damage.");
         if(hp <= 0){
@@ -133,9 +133,10 @@ public abstract class Agent implements TickListener {
         return this.perceptor;
     }
 
-    public int getHP(){
+    public double getHP(){
         return this.hp;
     }
+
     public void setState(State state){
         this.state = state;
     }

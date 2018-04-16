@@ -6,16 +6,18 @@ import sim.agent.Pheromone;
 import sim.agent.state.State;
 
 import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 
 public class Guarding extends State {
 
     private Agent threat;
     private int threshold;
     private Pheromone triggerPheromone;
-
+    private int guardDistance;
     public Guarding(Agent parent) {
         super(parent);
         threshold = 50;
+        guardDistance = ThreadLocalRandom.current().nextInt(-10, 10);
     }
 
     /**
@@ -38,11 +40,17 @@ public class Guarding extends State {
 
         if(threat != null){
             if(getWillingness() > new Random().nextInt(100)){
-                parent.setState(new Mobbing(parent, threat));
+                double temperature = parent.getParent().getMob().getTemperature();
+                //add some fuzziness to the perceived temperature
+                double temperatureFuzz = ThreadLocalRandom.current().nextInt(-1,1);
+                temperature = temperature + temperatureFuzz;
+                if(temperature <= 45){
+                    parent.setState(new Mobbing(parent, threat));
+                }
                 return parent.getLocation();
             }
             if(new Random().nextInt(10) > 1) {
-                if (parent.getLocation().DistanceTo(threat.getLocation()) >= parent.getParent().getOptions().getPerceptionDistance() / 1.5) {
+                if (parent.getLocation().DistanceTo(threat.getLocation()) >= (parent.getParent().getOptions().getPerceptionDistance() / 2) + guardDistance) {
                     return Threaten();
                 }
                 else {
@@ -78,7 +86,6 @@ public class Guarding extends State {
         if(mobSize <= 0){
             mobSize = 1;
         }
-        double willingness =  (aggression * mobSize)/distance;
         return (aggression * mobSize)/distance;
     }
 

@@ -10,6 +10,7 @@ public class Mob extends ArrayList<Agent> implements TickListener {
 
     private Simulation parent;
     private int mobSize = 0;
+    private int currentlyLeaving = 0;
     private double temperature = 0;
 
     public Mob(Simulation parent){
@@ -31,10 +32,14 @@ public class Mob extends ArrayList<Agent> implements TickListener {
         = T1 + ((n/5)^2 + T1 - T1)/T1
         = T1 + (n/5)^2 / T1
          */
-        temperature = temperature + (((mobSize/5)*(mobSize/5))/Defaults.BASE_TEMPERATURE);
+        temperature = Defaults.BASE_TEMPERATURE + (((mobSize/2)*(mobSize/2) - temperature)/Defaults.BASE_TEMPERATURE);
 
         if(temperature > Defaults.BASE_TEMPERATURE){
             temperature--;
+        }
+        if(temperature >= Defaults.HORNET_LETHAL_TEMPERATURE){
+            double damage = Defaults.HORNET_TARGET_RADIUS - temperature + 1;
+            parent.getHornet().Damage(damage/10);
         }
     }
 
@@ -83,4 +88,15 @@ public class Mob extends ArrayList<Agent> implements TickListener {
         return this.mobSize;
     }
 
+    public void setCurrentlyLeaving(int val){
+        this.currentlyLeaving = val;
+    }
+
+    public int getCurrentlyLeaving(){
+        return this.currentlyLeaving;
+    }
+
+    public void modifyCurrentlyLeaving(int val){
+        this.currentlyLeaving += val;
+    }
 }
