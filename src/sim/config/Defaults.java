@@ -50,5 +50,5 @@ public class Defaults {
     //Average temperature in Osaka, Japan according to the Japanese Meteorological http://www.data.jma.go.jp/obd/stats/data/en/normal/normal.html
     public static double BASE_TEMPERATURE = 19; //C
     public static double BEE_LETHAL_TEMPERATURE = 48;
-    public static double HORNET_LETHAL_TEMPERATURE = 46;
+    public static double HORNET_LETHAL_TEMPERATURE = 44;
 }

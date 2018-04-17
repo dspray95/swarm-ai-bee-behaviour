@@ -37,8 +37,9 @@ public class Mob extends ArrayList<Agent> implements TickListener {
         if(temperature > Defaults.BASE_TEMPERATURE){
             temperature--;
         }
+
         if(temperature >= Defaults.HORNET_LETHAL_TEMPERATURE){
-            double damage = Defaults.HORNET_TARGET_RADIUS - temperature + 1;
+            double damage = temperature - Defaults.HORNET_LETHAL_TEMPERATURE  + 1;
             parent.getHornet().Damage(damage/10);
         }
     }

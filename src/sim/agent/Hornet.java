@@ -11,7 +11,7 @@ public class Hornet extends Agent {
         super(parent, location);
 //        this.state = new Working(this, options.getCohesionRate());
         this.state = new Hunting(this);
-        this.hp = 50;
+        this.hp = 25;
         this.heatThreshold = 47;
         this.attackPoints = 3;
     }

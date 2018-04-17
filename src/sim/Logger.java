@@ -67,6 +67,7 @@ public class Logger {
         int activeMobSize = 0;    //Differs from numMobbing in that this value is the number of agents that are contributing to the heat generation in the mob
         int numPerceivingHornet = 0;
         int numDead = 0;
+        int swarmProductivity;
         double mobTemperature = 0d;
 
         for(Agent agent : sim.getSwarm()){
@@ -90,6 +91,7 @@ public class Logger {
         }
         activeMobSize = sim.getMob().getMobSize();
         mobTemperature = sim.getMob().getTemperature();
+        swarmProductivity = sim.getProductivity();
         //create file and write
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
         Date date = new Date();
@@ -107,6 +109,7 @@ public class Logger {
         bw.write("perceived_threat:" + numPerceivingHornet + lineBreak);
         bw.write("active_mob_size:" + activeMobSize + lineBreak);
         bw.write("mob_temperature:" + mobTemperature + lineBreak);
+        bw.write("productivity:" + swarmProductivity + lineBreak);
         bw.close();
         System.out.println("FINISHED WRITING LOG FILE");
     }

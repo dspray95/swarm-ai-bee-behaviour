@@ -3,15 +3,22 @@
   <component name="ChangeListManager">
     <list default="true" id="3a6c5f64-66fa-4a00-b60f-ad7bb937846d" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/Main.class" afterPath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/Main.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/sim/Logger.class" afterPath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/sim/Logger.class" />
       <change beforePath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/sim/Mob.class" afterPath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/sim/Mob.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/sim/agent/state/bee/Guarding.class" afterPath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/sim/agent/state/bee/Guarding.class" />
-      <change beforePath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/sim/agent/state/bee/Mobbing.class" afterPath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/sim/agent/state/bee/Mobbing.class" />
-      <change beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
+      <change beforePath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/sim/agent/Agent.class" afterPath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/sim/agent/Agent.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/sim/agent/Bee.class" afterPath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/sim/agent/Bee.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/sim/agent/Hornet.class" afterPath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/sim/agent/Hornet.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/sim/agent/module/Actuator.class" afterPath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/sim/agent/module/Actuator.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/sim/agent/module/Perceptor.class" afterPath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/sim/agent/module/Perceptor.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/sim/agent/state/hornet/Attacking.class" afterPath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/sim/agent/state/hornet/Attacking.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/sim/agent/state/hornet/Hunting.class" afterPath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/sim/agent/state/hornet/Hunting.class" />
+      <change beforePath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/sim/config/Defaults.class" afterPath="$PROJECT_DIR$/out/production/swarm-ai-bee-behaviour/sim/config/Defaults.class" />
+      <change beforePath="$PROJECT_DIR$/src/sim/Logger.java" afterPath="$PROJECT_DIR$/src/sim/Logger.java" />
       <change beforePath="$PROJECT_DIR$/src/sim/Mob.java" afterPath="$PROJECT_DIR$/src/sim/Mob.java" />
+      <change beforePath="$PROJECT_DIR$/src/sim/Simulation.java" afterPath="$PROJECT_DIR$/src/sim/Simulation.java" />
       <change beforePath="$PROJECT_DIR$/src/sim/agent/Agent.java" afterPath="$PROJECT_DIR$/src/sim/agent/Agent.java" />
-      <change beforePath="$PROJECT_DIR$/src/sim/agent/state/bee/Guarding.java" afterPath="$PROJECT_DIR$/src/sim/agent/state/bee/Guarding.java" />
-      <change beforePath="$PROJECT_DIR$/src/sim/agent/state/bee/Mobbing.java" afterPath="$PROJECT_DIR$/src/sim/agent/state/bee/Mobbing.java" />
+      <change beforePath="$PROJECT_DIR$/src/sim/agent/Hornet.java" afterPath="$PROJECT_DIR$/src/sim/agent/Hornet.java" />
+      <change beforePath="$PROJECT_DIR$/src/sim/config/Defaults.java" afterPath="$PROJECT_DIR$/src/sim/config/Defaults.java" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,8 +40,8 @@
       <file leaf-file-name="Guarding.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sim/agent/state/bee/Guarding.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="45" column="60" lean-forward="true" selection-start-line="45" selection-start-column="60" selection-end-line="45" selection-end-column="60" />
+            <state relative-caret-position="663">
+              <caret line="45" column="60" lean-forward="false" selection-start-line="45" selection-start-column="60" selection-end-line="45" selection-end-column="60" />
               <folding>
                 <element signature="e#3964#3965#0" expanded="true" />
                 <element signature="e#4022#4023#0" expanded="true" />
@@ -43,30 +50,6 @@
                 <element signature="e#4151#4152#0" expanded="true" />
                 <element signature="e#4192#4193#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Coordinate.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sim/Coordinate.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1105">
-              <caret line="68" column="87" lean-forward="false" selection-start-line="68" selection-start-column="87" selection-end-line="68" selection-end-column="87" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2451#2452#0" expanded="true" />
-                <element signature="e#2508#2509#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Mobbing.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sim/agent/state/bee/Mobbing.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="197">
-              <caret line="45" column="72" lean-forward="true" selection-start-line="45" selection-start-column="72" selection-end-line="45" selection-end-column="72" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -81,65 +64,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Mob.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sim/Mob.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="41" column="49" lean-forward="false" selection-start-line="41" selection-start-column="49" selection-end-line="41" selection-end-column="49" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#2442#2443#0" expanded="true" />
-                <element signature="e#2481#2482#0" expanded="true" />
-                <element signature="e#2511#2512#0" expanded="true" />
-                <element signature="e#2546#2547#0" expanded="true" />
-                <element signature="e#2593#2594#0" expanded="true" />
-                <element signature="e#2636#2637#0" expanded="true" />
-                <element signature="e#2675#2676#0" expanded="true" />
-                <element signature="e#2719#2720#0" expanded="true" />
-                <element signature="e#2769#2770#0" expanded="true" />
-                <element signature="e#2813#2814#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Agent.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/sim/agent/Agent.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="135" column="17" lean-forward="false" selection-start-line="135" selection-start-column="17" selection-end-line="135" selection-end-column="17" />
-              <folding>
-                <element signature="e#3622#3623#0" expanded="true" />
-                <element signature="e#3661#3662#0" expanded="true" />
-                <element signature="e#3714#3715#0" expanded="true" />
-                <element signature="e#3760#3761#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Simulation.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sim/Simulation.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1037">
-              <caret line="83" column="18" lean-forward="false" selection-start-line="83" selection-start-column="18" selection-end-line="83" selection-end-column="18" />
+            <state relative-caret-position="177">
+              <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
               <folding>
-                <element signature="e#1939#1940#0" expanded="true" />
-                <element signature="e#1980#1981#0" expanded="true" />
-                <element signature="e#2006#2007#0" expanded="true" />
-                <element signature="e#2037#2038#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/Main.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="194">
-              <caret line="23" column="19" lean-forward="false" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
-              <folding>
-                <element signature="imports" expanded="true" />
+                <element signature="e#2398#2399#0" expanded="true" />
+                <element signature="e#2438#2439#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -148,26 +80,93 @@
       <file leaf-file-name="Logger.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/sim/Logger.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2380">
-              <caret line="152" column="69" lean-forward="false" selection-start-line="152" selection-start-column="69" selection-end-line="152" selection-end-column="69" />
+            <state relative-caret-position="479">
+              <caret line="112" column="19" lean-forward="true" selection-start-line="112" selection-start-column="19" selection-end-line="112" selection-end-column="19" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#6191#6192#0" expanded="true" />
-                <element signature="e#6226#6227#0" expanded="true" />
-                <element signature="e#6284#6285#0" expanded="true" />
-                <element signature="e#6321#6322#0" expanded="true" />
-                <element signature="e#6377#6378#0" expanded="true" />
-                <element signature="e#6420#6421#0" expanded="true" />
+                <element signature="e#6340#6341#0" expanded="true" />
+                <element signature="e#6375#6376#0" expanded="true" />
+                <element signature="e#6433#6434#0" expanded="true" />
+                <element signature="e#6470#6471#0" expanded="true" />
+                <element signature="e#6526#6527#0" expanded="true" />
+                <element signature="e#6569#6570#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Working.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/sim/agent/state/bee/Working.java">
+      <file leaf-file-name="Mob.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/sim/Mob.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="20" column="54" lean-forward="false" selection-start-line="20" selection-start-column="54" selection-end-line="20" selection-end-column="54" />
+            <state relative-caret-position="-17">
+              <caret line="34" column="44" lean-forward="false" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#2449#2450#0" expanded="true" />
+                <element signature="e#2488#2489#0" expanded="true" />
+                <element signature="e#2518#2519#0" expanded="true" />
+                <element signature="e#2553#2554#0" expanded="true" />
+                <element signature="e#2600#2601#0" expanded="true" />
+                <element signature="e#2643#2644#0" expanded="true" />
+                <element signature="e#2682#2683#0" expanded="true" />
+                <element signature="e#2726#2727#0" expanded="true" />
+                <element signature="e#2776#2777#0" expanded="true" />
+                <element signature="e#2820#2821#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Defaults.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sim/config/Defaults.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="510">
+              <caret line="34" column="5" lean-forward="false" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Actuator.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sim/agent/module/Actuator.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="544">
+              <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Agent.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sim/agent/Agent.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="17">
+              <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+              <folding>
+                <element signature="e#3559#3560#0" expanded="true" />
+                <element signature="e#3598#3599#0" expanded="true" />
+                <element signature="e#3651#3652#0" expanded="true" />
+                <element signature="e#3697#3698#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Hornet.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sim/agent/Hornet.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="204">
+              <caret line="15" column="30" lean-forward="false" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Bee.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/sim/agent/Bee.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="34">
+              <caret line="4" column="35" lean-forward="false" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -211,7 +210,6 @@
         <option value="$PROJECT_DIR$/test/sim/agent/state/bee/WorkingTest.java" />
         <option value="$PROJECT_DIR$/src/visualiser/Visualiser.java" />
         <option value="$PROJECT_DIR$/test/sim/CoordinateTest.java" />
-        <option value="$PROJECT_DIR$/src/sim/agent/Hornet.java" />
         <option value="$PROJECT_DIR$/src/sim/agent/Pheremone.java" />
         <option value="$PROJECT_DIR$/src/sim/config/AggressionSetting.java" />
         <option value="$PROJECT_DIR$/src/sim/config/Options.java" />
@@ -226,15 +224,16 @@
         <option value="$PROJECT_DIR$/src/sim/agent/Bee.java" />
         <option value="$PROJECT_DIR$/src/sim/agent/module/Perceptor.java" />
         <option value="$PROJECT_DIR$/src/sim/Populator.java" />
-        <option value="$PROJECT_DIR$/src/sim/Simulation.java" />
         <option value="$PROJECT_DIR$/src/sim/Coordinate.java" />
-        <option value="$PROJECT_DIR$/src/sim/config/Defaults.java" />
-        <option value="$PROJECT_DIR$/src/sim/Logger.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
         <option value="$PROJECT_DIR$/src/sim/agent/state/bee/Mobbing.java" />
         <option value="$PROJECT_DIR$/src/sim/agent/state/bee/Guarding.java" />
-        <option value="$PROJECT_DIR$/src/sim/Mob.java" />
+        <option value="$PROJECT_DIR$/src/sim/agent/Hornet.java" />
         <option value="$PROJECT_DIR$/src/sim/agent/Agent.java" />
+        <option value="$PROJECT_DIR$/src/sim/config/Defaults.java" />
+        <option value="$PROJECT_DIR$/src/sim/Mob.java" />
+        <option value="$PROJECT_DIR$/src/sim/Logger.java" />
+        <option value="$PROJECT_DIR$/src/sim/Simulation.java" />
       </list>
     </option>
   </component>
@@ -264,7 +263,6 @@
     <panes>
       <pane id="PackagesPane" />
       <pane id="AndroidView" />
-      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -325,6 +323,7 @@
         </subPane>
       </pane>
       <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -672,7 +671,7 @@
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.49546143" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.28214827" sideWeight="0.4801865" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2912254" sideWeight="0.4801865" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Statistic" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32941177" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -731,7 +730,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/sim/Logger.java</url>
-          <line>135</line>
+          <line>138</line>
           <properties />
           <option name="timeStamp" value="60" />
         </line-breakpoint>
@@ -749,7 +748,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="259" />
+      <option name="time" value="264" />
     </breakpoint-manager>
     <watches-manager>
       <configuration name="Application">
@@ -893,12 +892,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="374">
           <caret line="27" column="93" lean-forward="false" selection-start-line="27" selection-start-column="93" selection-end-line="27" selection-end-column="93" />
-          <folding>
-            <element signature="e#1939#1940#0" expanded="true" />
-            <element signature="e#1980#1981#0" expanded="true" />
-            <element signature="e#2006#2007#0" expanded="true" />
-            <element signature="e#2037#2038#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1031,25 +1024,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sim/agent/Hornet.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="204">
-          <caret line="15" column="30" lean-forward="false" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sim/config/Options.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="527">
           <caret line="33" column="40" lean-forward="false" selection-start-line="33" selection-start-column="40" selection-end-line="33" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sim/agent/module/Actuator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="459">
-          <caret line="30" column="0" lean-forward="false" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1082,13 +1060,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sim/agent/Bee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="16" column="0" lean-forward="false" selection-start-line="16" selection-start-column="0" selection-end-line="16" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sim/agent/Pheromone.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="408">
@@ -1114,14 +1085,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sim/config/Defaults.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="833">
-          <caret line="53" column="0" lean-forward="false" selection-start-line="53" selection-start-column="0" selection-end-line="53" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sim/agent/state/bee/Working.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="272">
@@ -1130,43 +1093,87 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sim/Simulation.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1037">
-          <caret line="83" column="18" lean-forward="false" selection-start-line="83" selection-start-column="18" selection-end-line="83" selection-end-column="18" />
-          <folding>
-            <element signature="e#1939#1940#0" expanded="true" />
-            <element signature="e#1980#1981#0" expanded="true" />
-            <element signature="e#2006#2007#0" expanded="true" />
-            <element signature="e#2037#2038#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/sim/Coordinate.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1105">
           <caret line="68" column="87" lean-forward="false" selection-start-line="68" selection-start-column="87" selection-end-line="68" selection-end-column="87" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="23" column="19" lean-forward="false" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2451#2452#0" expanded="true" />
-            <element signature="e#2508#2509#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sim/Logger.java">
+    <entry file="file://$PROJECT_DIR$/src/sim/agent/state/bee/Mobbing.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2380">
-          <caret line="152" column="69" lean-forward="false" selection-start-line="152" selection-start-column="69" selection-end-line="152" selection-end-column="69" />
+        <state relative-caret-position="646">
+          <caret line="45" column="72" lean-forward="false" selection-start-line="45" selection-start-column="72" selection-end-line="45" selection-end-column="72" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sim/agent/state/bee/Guarding.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="663">
+          <caret line="45" column="60" lean-forward="false" selection-start-line="45" selection-start-column="60" selection-end-line="45" selection-end-column="60" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#6191#6192#0" expanded="true" />
-            <element signature="e#6226#6227#0" expanded="true" />
-            <element signature="e#6284#6285#0" expanded="true" />
-            <element signature="e#6321#6322#0" expanded="true" />
-            <element signature="e#6377#6378#0" expanded="true" />
-            <element signature="e#6420#6421#0" expanded="true" />
+            <element signature="e#3964#3965#0" expanded="true" />
+            <element signature="e#4022#4023#0" expanded="true" />
+            <element signature="e#4064#4065#0" expanded="true" />
+            <element signature="e#4100#4101#0" expanded="true" />
+            <element signature="e#4151#4152#0" expanded="true" />
+            <element signature="e#4192#4193#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sim/agent/Bee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="4" column="35" lean-forward="false" selection-start-line="4" selection-start-column="35" selection-end-line="4" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sim/agent/Hornet.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="204">
+          <caret line="15" column="30" lean-forward="false" selection-start-line="15" selection-start-column="30" selection-end-line="15" selection-end-column="30" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sim/agent/module/Actuator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="544">
+          <caret line="35" column="0" lean-forward="false" selection-start-line="35" selection-start-column="0" selection-end-line="35" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sim/config/Defaults.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="510">
+          <caret line="34" column="5" lean-forward="false" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/sim/agent/Agent.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="17">
+          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
+          <folding>
+            <element signature="e#3559#3560#0" expanded="true" />
+            <element signature="e#3598#3599#0" expanded="true" />
+            <element signature="e#3651#3652#0" expanded="true" />
+            <element signature="e#3697#3698#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -1179,68 +1186,49 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
+    <entry file="file://$PROJECT_DIR$/src/sim/Logger.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="23" column="19" lean-forward="false" selection-start-line="23" selection-start-column="19" selection-end-line="23" selection-end-column="19" />
+        <state relative-caret-position="479">
+          <caret line="112" column="19" lean-forward="true" selection-start-line="112" selection-start-column="19" selection-end-line="112" selection-end-column="19" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="e#6340#6341#0" expanded="true" />
+            <element signature="e#6375#6376#0" expanded="true" />
+            <element signature="e#6433#6434#0" expanded="true" />
+            <element signature="e#6470#6471#0" expanded="true" />
+            <element signature="e#6526#6527#0" expanded="true" />
+            <element signature="e#6569#6570#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/sim/agent/state/bee/Mobbing.java">
+    <entry file="file://$PROJECT_DIR$/src/sim/Simulation.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="197">
-          <caret line="45" column="72" lean-forward="true" selection-start-line="45" selection-start-column="72" selection-end-line="45" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sim/agent/state/bee/Guarding.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="45" column="60" lean-forward="true" selection-start-line="45" selection-start-column="60" selection-end-line="45" selection-end-column="60" />
+        <state relative-caret-position="177">
+          <caret line="68" column="0" lean-forward="true" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
           <folding>
-            <element signature="e#3964#3965#0" expanded="true" />
-            <element signature="e#4022#4023#0" expanded="true" />
-            <element signature="e#4064#4065#0" expanded="true" />
-            <element signature="e#4100#4101#0" expanded="true" />
-            <element signature="e#4151#4152#0" expanded="true" />
-            <element signature="e#4192#4193#0" expanded="true" />
+            <element signature="e#2398#2399#0" expanded="true" />
+            <element signature="e#2438#2439#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/sim/Mob.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="41" column="49" lean-forward="false" selection-start-line="41" selection-start-column="49" selection-end-line="41" selection-end-column="49" />
+        <state relative-caret-position="-17">
+          <caret line="34" column="44" lean-forward="false" selection-start-line="34" selection-start-column="44" selection-end-line="34" selection-end-column="44" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#2442#2443#0" expanded="true" />
-            <element signature="e#2481#2482#0" expanded="true" />
-            <element signature="e#2511#2512#0" expanded="true" />
-            <element signature="e#2546#2547#0" expanded="true" />
-            <element signature="e#2593#2594#0" expanded="true" />
-            <element signature="e#2636#2637#0" expanded="true" />
-            <element signature="e#2675#2676#0" expanded="true" />
-            <element signature="e#2719#2720#0" expanded="true" />
-            <element signature="e#2769#2770#0" expanded="true" />
-            <element signature="e#2813#2814#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/sim/agent/Agent.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="135" column="17" lean-forward="false" selection-start-line="135" selection-start-column="17" selection-end-line="135" selection-end-column="17" />
-          <folding>
-            <element signature="e#3622#3623#0" expanded="true" />
-            <element signature="e#3661#3662#0" expanded="true" />
-            <element signature="e#3714#3715#0" expanded="true" />
-            <element signature="e#3760#3761#0" expanded="true" />
+            <element signature="e#2449#2450#0" expanded="true" />
+            <element signature="e#2488#2489#0" expanded="true" />
+            <element signature="e#2518#2519#0" expanded="true" />
+            <element signature="e#2553#2554#0" expanded="true" />
+            <element signature="e#2600#2601#0" expanded="true" />
+            <element signature="e#2643#2644#0" expanded="true" />
+            <element signature="e#2682#2683#0" expanded="true" />
+            <element signature="e#2726#2727#0" expanded="true" />
+            <element signature="e#2776#2777#0" expanded="true" />
+            <element signature="e#2820#2821#0" expanded="true" />
           </folding>
         </state>
       </provider>
