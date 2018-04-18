@@ -12,6 +12,7 @@ public class Options {
     boolean writeSwarmFile;
     boolean writeLogFile;
     int pheromoneStrength;
+    int numTicks;
 
     public Options(){
         this.cohesionRate = Defaults.COHESION_RATE;
@@ -24,6 +25,7 @@ public class Options {
         this.aggressionSetting = Defaults.AGGRESSION_SETTING;
         this.aggression = Defaults.AGGRESSION_VALUE;
         this.pheromoneStrength = Defaults.PHEROMONE_STRENGTH;
+        this.numTicks = Defaults.NUM_TICKS;
     }
 
 
@@ -105,6 +107,14 @@ public class Options {
 
     public void setAggressionSetting(AggressionSetting aggressionSetting) {
         this.aggressionSetting = aggressionSetting;
+    }
+
+    public int getNumTicks(){
+        return this.numTicks;
+    }
+
+    public void setNumTicks(int numTicks){
+        this.numTicks = numTicks;
     }
 
 }

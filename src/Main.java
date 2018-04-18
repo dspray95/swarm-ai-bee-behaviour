@@ -1,6 +1,7 @@
 import sim.Logger;
 import sim.Simulation;
 import sim.config.AggressionSetting;
+import sim.config.Defaults;
 import sim.config.Options;
 
 import java.io.IOException;
@@ -16,19 +17,12 @@ public class Main {
             options = ParseArgs(args);
         }
         else {
-            //ToDo args options
+            //Sets to defaults if there are no args
             options = new Options();
-            options.setCohesionRate(5);
-            options.setWriteLogFile(true);
-            options.setWriteSwarmFile(true);
-            options.setPerceptionDistance(25);
-            options.setAggressionSetting(AggressionSetting.UNIFORM);
-            options.setAggression(1d);
-            options.setPheromoneStrength(90);
-            options.setSwarmSize(1000);
         }
+
         sim = new Simulation(options);
-        sim.runForTicks(500);
+        sim.runForTicks(options.getNumTicks());
 
         if(options.isWriteSwarmFile()) {
             logger = sim.getLogger();
@@ -54,15 +48,40 @@ public class Main {
         Options options = new Options();
         String[] argCurrent;
         for (String arg : args) {
-            if (arg.contains("swarmsize")) {
+
+            if(arg.equalsIgnoreCase("help")) {
+                System.out.print(Defaults.HELP_TEXT);
+                System.exit(0);
+            }
+            else if(arg.contains(":")){  //Check if the argument has a value
                 argCurrent = arg.split(":");
-                options.setSwarmSize(Integer.parseInt(argCurrent[1]));
-            } else if (arg.contains("aggression")) {
-                argCurrent = arg.split(":");
-                options.setAggression(Integer.parseInt(argCurrent[1]));
-            } else if (arg.contains("writeswarmfile")){
-                argCurrent = arg.split(":");
-                options.setWriteSwarmFile(argCurrent[1].equals("true"));
+                if (argCurrent[0].equalsIgnoreCase("swarm_size")) {
+                    options.setSwarmSize(Integer.parseInt(argCurrent[1]));
+                }
+                else if (argCurrent[0].equalsIgnoreCase("aggression")) {
+                    options.setAggression(Integer.parseInt(argCurrent[1]));
+                }
+                else if (argCurrent[0].equalsIgnoreCase("tick_count")){
+                    options.setNumTicks(Integer.parseInt(argCurrent[1]));
+                }
+                else if(argCurrent[0].equalsIgnoreCase("aggression_setting")){
+                    switch(argCurrent[1]){
+                        case("UNIFORM"):
+                            options.setAggressionSetting(AggressionSetting.UNIFORM);
+                            break;
+                        case("RANDOM_SPREAD"):
+                            options.setAggressionSetting(AggressionSetting.RANDOM_SPREAD);
+                            break;
+                        case("CLOSE_TO_VALUE"):
+                            options.setAggressionSetting(AggressionSetting.CLOSE_TO_VALUE);
+                            break;
+                    }
+                }
+            }
+            else if (arg.equalsIgnoreCase("write_swarm_file")){
+                options.setWriteSwarmFile(true);
+            } else if(arg.equalsIgnoreCase("write_log_file")){
+                options.setWriteLogFile(true);
             }
         }
         return options;
