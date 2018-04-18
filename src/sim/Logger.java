@@ -125,8 +125,6 @@ public class Logger {
         filepath = filepath + File.separator + dateFormat.format(date) + ".SWARM";
         file = new File(filepath);
         BufferedWriter bw = new BufferedWriter(new FileWriter(file));
-        int lineNumber = 0;
-
         for(ArrayList<Coordinate> positions : positionList){
             String line = "apid";
             int index = positionList.indexOf(positions);
@@ -141,7 +139,6 @@ public class Logger {
             }
             bw.write(line);
             bw.newLine();
-            lineNumber++;
         }
 
         String hornetLine = "vespid";

@@ -38,8 +38,8 @@ public class Perceptor {
         perceivedBees = new ArrayList<>();
 
         if(parent.getLocation().DistanceTo(environment.getHornet().getLocation()) <= perceptionDistance){
-            threatPerceived = true;
-            threat = environment.getHornet();
+                threatPerceived = true;
+                threat = environment.getHornet();
         }
 
         //Get all the bees we can currently perceive

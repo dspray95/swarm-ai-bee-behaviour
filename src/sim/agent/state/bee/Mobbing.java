@@ -31,6 +31,15 @@ public class Mobbing extends State {
         If the temp is too high, try to leave
          */
         parent.setTemperature(mob.getTemperature());
+        if(target.getHP() <= 0){
+            if(parent.getLocation().DistanceTo(target.getLocation()) > parent.getOptions().getPerceptionDistance()/2){
+                parent.setState(new Working(parent, parent.getOptions().getCohesionRate()));
+                return parent.getLocation();
+            }
+            else{
+                return GetBestVector(LeaveMobVector());
+            }
+        }
         if(leaving){
             if(parent.getLocation().DistanceTo(target.getLocation()) > parent.getOptions().getPerceptionDistance()/2){
                 mob.modifyCurrentlyLeaving(-1);
@@ -43,6 +52,7 @@ public class Mobbing extends State {
                 return GetBestVector(LeaveMobVector());
             }
         }
+
         if(parent.getTemperature() >= Defaults.BEE_LETHAL_TEMPERATURE - 2){
             Coordinate leavingVector = LeaveMobVector();
             if(GetBestVector(leavingVector).Equals(parent.getLocation())){

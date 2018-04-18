@@ -43,12 +43,13 @@ public abstract class Agent implements TickListener {
     }
 
     public void Damage(double value){
-        this.hp -= value;
-        if(hp <= 0){
-            System.out.println("Agent killed");
-            this.state = new Dead(this);
+        if(hp > -1) {
+            this.hp -= value;
+            if (hp <= 0) {
+                System.out.println("Agent killed");
+                this.state = new Dead(this);
+            }
         }
-
     }
 
     @Override

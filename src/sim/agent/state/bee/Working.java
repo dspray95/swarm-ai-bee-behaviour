@@ -17,15 +17,17 @@ public class Working extends State {
 
     public Coordinate GetTarget(){
         if(parent.getPerceptor().isThreatPerceived()){
-            parent.PlacePheromone(parent.getOptions().getPheromoneStrength());
-            Guarding nextState = new Guarding(parent);
-            nextState.setThreat(parent.getPerceptor().getThreat());
-            parent.setState(nextState);
-            return parent.getLocation();
+            if(parent.getPerceptor().getThreat().getHP() > 0) {
+                parent.PlacePheromone(parent.getOptions().getPheromoneStrength());
+                Guarding nextState = new Guarding(parent);
+                nextState.setThreat(parent.getPerceptor().getThreat());
+                parent.setState(nextState);
+            }
         }
         else if(parent.getAlertLevel() > 0){
             parent.IncreaseAlertLevel(-0.1d); //decrement alert level by tick if we cant see the threat
         }
+
         return CohesiveRandomWalk();
     }
 
