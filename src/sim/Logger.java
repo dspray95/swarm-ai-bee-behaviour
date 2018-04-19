@@ -6,6 +6,7 @@ import sim.agent.Hornet;
 import sim.agent.state.bee.Guarding;
 import sim.agent.state.bee.Mobbing;
 import sim.agent.state.bee.Working;
+import sim.config.AggressionSetting;
 
 import java.io.*;
 import java.text.DateFormat;
@@ -13,6 +14,7 @@ import java.text.DecimalFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.concurrent.TimeUnit;
 
 public class Logger {
 
@@ -60,38 +62,29 @@ public class Logger {
 
     public void WriteLogFIle(Simulation sim) throws IOException {
         System.out.println("WRITING LOG FILE...");
-        //gather up infomration
-        int numWorking = 0;
-        int numGuarding = 0;
-        int numMobbing = 0;
-        int activeMobSize = 0;    //Differs from numMobbing in that this value is the number of agents that are contributing to the heat generation in the mob
-        int numPerceivingHornet = 0;
+        //gather up information
         int numDead = 0;
-        int swarmProductivity;
-        double mobTemperature = 0d;
+        int swarmProductivity = sim.getProductivity();;
+        double aggression = sim.getOptions().getAggression();
+        long time = TimeUnit.NANOSECONDS.toMinutes(sim.getTimeToKill());
+        String aggressionSetting = "";
+        switch(sim.getOptions().getAggressionSetting()){
+            case UNIFORM:
+                aggressionSetting = "UNIFORM";
+                break;
+            case CLOSE_TO_VALUE:
+                aggressionSetting = "CLOSE_TO_VALUE";
+                break;
+            case RANDOM_SPREAD:
+                aggressionSetting = "RANDOM_SPREAD";
+                break;
+        }
 
         for(Agent agent : sim.getSwarm()){
-            Class stateClass = agent.getState().getClass();
-            if(stateClass == Working.class){
-                numWorking++;
-            }
-            else if(stateClass == Guarding.class){
-                numGuarding++;
-            }
-            else if(stateClass == Mobbing.class){
-                numMobbing++;
-            }
-
             if(agent.getHP() <= 0){
                 numDead++;
             }
-            if(agent.getPerceptor().getThreat() != null){
-                numPerceivingHornet++;
-            }
         }
-        activeMobSize = sim.getMob().getMobSize();
-        mobTemperature = sim.getMob().getTemperature();
-        swarmProductivity = sim.getProductivity();
         //create file and write
         DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd-HH-mm-ss");
         Date date = new Date();
@@ -102,13 +95,10 @@ public class Logger {
         file = new File(filepath);
         BufferedWriter bw = new BufferedWriter(new FileWriter(file));
         String lineBreak = System.getProperty("line.separator");
-        bw.write("workers:" + numWorking + lineBreak);
-        bw.write("guards:" + numGuarding + lineBreak);
-        bw.write("mobs:" + numMobbing + lineBreak);
+        bw.write("aggression:" + aggression + lineBreak);
+        bw.write("distribution:" + aggressionSetting + lineBreak);
         bw.write("dead:"+ numDead + lineBreak);
-        bw.write("perceived_threat:" + numPerceivingHornet + lineBreak);
-        bw.write("active_mob_size:" + activeMobSize + lineBreak);
-        bw.write("mob_temperature:" + mobTemperature + lineBreak);
+        bw.write("time:" + time + lineBreak);
         bw.write("productivity:" + swarmProductivity + lineBreak);
         bw.close();
         System.out.println("FINISHED WRITING LOG FILE");

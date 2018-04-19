@@ -19,6 +19,7 @@ public class Simulation {
     private Logger logger;
     private Mob mob;
     private int productivity;
+    private long timeToKill;
 
     public Simulation(Options options){
         this.swarm = new ArrayList<>();
@@ -48,8 +49,14 @@ public class Simulation {
     }
 
     public boolean runForTicks(int numTicks){
+        long startTime = System.nanoTime();
+        long endTime = 0;
         for(int i = 0; i<=numTicks; i++){
             this.Tick();
+            if(hornet.getHP() <= 0){
+                endTime = System.nanoTime();
+                timeToKill = endTime - startTime;
+            }
             logger.Log(this);
         }
         return true;
@@ -97,6 +104,10 @@ public class Simulation {
 
     public int getProductivity(){
         return this.productivity;
+    }
+
+    public long getTimeToKill(){
+        return this.timeToKill;
     }
 }
 

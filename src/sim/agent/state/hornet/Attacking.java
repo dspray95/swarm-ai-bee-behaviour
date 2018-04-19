@@ -15,7 +15,6 @@ public class Attacking extends State {
     public Attacking(Agent parent, Agent target) {
         super(parent);
         this.target = target;
-        System.out.println("STATE: attacking");
     }
 
     /**

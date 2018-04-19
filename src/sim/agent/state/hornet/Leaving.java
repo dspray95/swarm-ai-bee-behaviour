@@ -12,7 +12,6 @@ public class Leaving extends State {
 
     public Leaving(Agent parent) {
         super(parent);
-        System.out.print("STATE: leaving");
         //initialise the vector for the leave target
         leaveTarget = getLeaveTarget();
         //set the leave target absolute position to the edge of the environment
