@@ -43,13 +43,4 @@ public class Attacking extends State {
         }
     }
 
-    public boolean isProximate(Coordinate target){
-        for(Coordinate coord : Defaults.VECTORS){
-            Coordinate vectorLocation = new Coordinate(coord.X() + parent.getLocation().X(), coord.Y() + parent.getLocation().Y());
-            if(vectorLocation.X() == target.X() && vectorLocation.Y() == target.Y()){
-                return true;
-            }
-        }
-        return false;
-    }
 }

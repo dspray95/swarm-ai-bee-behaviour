@@ -9,6 +9,7 @@ import sim.agent.state.Dead;
 import sim.agent.state.State;
 import sim.agent.state.bee.Guarding;
 import sim.agent.state.bee.Working;
+import sim.agent.state.hornet.Attacked;
 import sim.config.Defaults;
 import sim.config.Options;
 
@@ -45,8 +46,16 @@ public abstract class Agent implements TickListener {
     public void Damage(double value){
         if(hp > -1) {
             this.hp -= value;
+            if(this.getClass() == Hornet.class){
+                this.state = new Attacked(this);
+            }
             if (hp <= 0) {
-                System.out.println("Agent killed");
+                if(this.getClass() == Bee.class) {
+                    System.out.println("Bee killed");
+                }
+                else if(this.getClass() == Hornet.class){
+                    System.out.println("Hornet killed");
+                }
                 this.state = new Dead(this);
             }
         }

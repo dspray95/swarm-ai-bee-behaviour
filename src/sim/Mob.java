@@ -2,6 +2,7 @@ package sim;
 
 import sim.agent.Agent;
 import sim.agent.listener.TickListener;
+import sim.agent.state.hornet.Attacked;
 import sim.config.Defaults;
 
 import java.util.ArrayList;

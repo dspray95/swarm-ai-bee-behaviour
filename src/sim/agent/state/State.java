@@ -130,4 +130,14 @@ public abstract  class State {
     public Coordinate VectorToCoordinate(Coordinate vector, Coordinate currentLocation){
         return new Coordinate(vector.X() + currentLocation.X(), vector.Y() + currentLocation.Y());
     }
+
+    public boolean isProximate(Coordinate target){
+        for(Coordinate coord : Defaults.VECTORS){
+            Coordinate vectorLocation = new Coordinate(coord.X() + parent.getLocation().X(), coord.Y() + parent.getLocation().Y());
+            if(vectorLocation.X() == target.X() && vectorLocation.Y() == target.Y()){
+                return true;
+            }
+        }
+        return false;
+    }
 }
