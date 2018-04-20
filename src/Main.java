@@ -27,7 +27,7 @@ public class Main {
         if(options.isWriteSwarmFile()) {
             logger = sim.getLogger();
             try {
-                logger.WriteSwarmFile();
+                logger.WriteSwarmFile(sim);
             } catch (IOException e) {
                 System.out.println(e);
             }
@@ -64,6 +64,9 @@ public class Main {
                 else if (argCurrent[0].equalsIgnoreCase("tick_count")){
                     options.setNumTicks(Integer.parseInt(argCurrent[1]));
                 }
+                else if (argCurrent[0].equalsIgnoreCase("filepath")){
+                    options.setFilepath(argCurrent[1]);
+                }
                 else if(argCurrent[0].equalsIgnoreCase("aggression_setting")){
                     switch(argCurrent[1]){
                         case("UNIFORM"):
@@ -80,7 +83,8 @@ public class Main {
             }
             else if (arg.equalsIgnoreCase("write_swarm_file")){
                 options.setWriteSwarmFile(true);
-            } else if(arg.equalsIgnoreCase("write_log_file")){
+            }
+            else if(arg.equalsIgnoreCase("write_log_file")){
                 options.setWriteLogFile(true);
             }
         }

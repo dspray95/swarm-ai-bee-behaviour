@@ -1,5 +1,7 @@
 package sim.config;
 
+import java.io.File;
+
 public class Options {
 
     int swarmSize;
@@ -13,6 +15,7 @@ public class Options {
     boolean writeLogFile;
     int pheromoneStrength;
     int numTicks;
+    String filepath;
 
     public Options(){
         this.cohesionRate = Defaults.COHESION_RATE;
@@ -26,6 +29,7 @@ public class Options {
         this.aggression = Defaults.AGGRESSION_VALUE;
         this.pheromoneStrength = Defaults.PHEROMONE_STRENGTH;
         this.numTicks = Defaults.NUM_TICKS;
+        this.filepath = System.getProperty("user.home") + File.separator + "swarm-ai-mobbing";
     }
 
 
@@ -117,4 +121,11 @@ public class Options {
         this.numTicks = numTicks;
     }
 
+    public String getFilepath(){
+        return this.filepath;
+    }
+
+    public void setFilepath(String filepath){
+        this.filepath = filepath;
+    }
 }
