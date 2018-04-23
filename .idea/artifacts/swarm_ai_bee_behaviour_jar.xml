@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="swarm-ai-bee-behaviour:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/swarm_ai_bee_behaviour_jar</output-path>
+    <root id="archive" name="swarm-ai-bee-behaviour.jar">
+      <element id="module-output" name="swarm-ai-bee-behaviour" />
+      <element id="library" level="application" name="groovy-2.4.13" />
+    </root>
+  </artifact>
+</component>

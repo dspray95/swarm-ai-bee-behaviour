@@ -23,7 +23,7 @@ public class Attacked extends State{
         Coordinate leavingVector = leaving.getLeaveTarget();
         if(GetBestVector(leavingVector).Equals(parent.getLocation())){
             if(target != null && isProximate(target.getLocation())){
-                target.Damage(parent.AttackRoll());
+                target.Damage(parent.AttackRoll()/5);
                 if(target.getHP() <= 0){
                     target = null;
                 }

@@ -55,7 +55,7 @@ public class Populator {
             case UNIFORM:
                 return aggressionVal;
             case RANDOM_SPREAD:
-                return ThreadLocalRandom.current().nextDouble(aggressionVal);
+                return ThreadLocalRandom.current().nextDouble(aggressionVal*2);
             case CLOSE_TO_VALUE:
                 return ThreadLocalRandom.current().nextDouble(aggressionVal/2, aggressionVal*1.5);
             default:

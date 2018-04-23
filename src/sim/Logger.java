@@ -3,10 +3,6 @@ package sim;
 import sim.agent.Agent;
 import sim.agent.Bee;
 import sim.agent.Hornet;
-import sim.agent.state.bee.Guarding;
-import sim.agent.state.bee.Mobbing;
-import sim.agent.state.bee.Working;
-import sim.config.AggressionSetting;
 
 import java.io.*;
 import java.text.DateFormat;
@@ -66,7 +62,7 @@ public class Logger {
         int numDead = 0;
         int swarmProductivity = sim.getProductivity();;
         double aggression = sim.getOptions().getAggression();
-        long time = TimeUnit.NANOSECONDS.toMinutes(sim.getTimeToKill());
+        long time = TimeUnit.NANOSECONDS.toMillis(sim.getTimeToKill());
         String aggressionSetting = "";
         switch(sim.getOptions().getAggressionSetting()){
             case UNIFORM:
@@ -100,6 +96,7 @@ public class Logger {
         bw.write("dead:"+ numDead + lineBreak);
         bw.write("time:" + time + lineBreak);
         bw.write("productivity:" + swarmProductivity + lineBreak);
+        bw.write("hornet:" + (sim.getHornet().getHP() > 0 ? "ALIVE":"DEAD"));
         bw.close();
         System.out.println("FINISHED WRITING LOG FILE");
     }

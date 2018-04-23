@@ -3,6 +3,7 @@ import sim.Simulation;
 import sim.config.AggressionSetting;
 import sim.config.Defaults;
 import sim.config.Options;
+import sun.misc.FloatingDecimal;
 
 import java.io.IOException;
 
@@ -57,35 +58,46 @@ public class Main {
                 argCurrent = arg.split(":");
                 if (argCurrent[0].equalsIgnoreCase("swarm_size")) {
                     options.setSwarmSize(Integer.parseInt(argCurrent[1]));
+                    System.out.println("swarm size: " + argCurrent[1]);
                 }
                 else if (argCurrent[0].equalsIgnoreCase("aggression")) {
-                    options.setAggression(Integer.parseInt(argCurrent[1]));
+                    options.setAggression(Double.parseDouble(argCurrent[1]));
+                    System.out.println("aggression: " + argCurrent[1]);
                 }
                 else if (argCurrent[0].equalsIgnoreCase("tick_count")){
                     options.setNumTicks(Integer.parseInt(argCurrent[1]));
+                    System.out.println("tick count: " + argCurrent[1]);
                 }
                 else if (argCurrent[0].equalsIgnoreCase("filepath")){
-                    options.setFilepath(argCurrent[1]);
+                    String path = argCurrent[1] + ":" + argCurrent[2]; //argCurrent will be split into 3 due to the : after drive letters
+                    path = path.replace("\\", "\\\\"); //fixing escape characters with directory separators
+                    options.setFilepath(path);
+                    System.out.println("file path: " + path);
                 }
                 else if(argCurrent[0].equalsIgnoreCase("aggression_setting")){
                     switch(argCurrent[1]){
                         case("UNIFORM"):
                             options.setAggressionSetting(AggressionSetting.UNIFORM);
+                            System.out.println("aggression setting: UNIFORM");
                             break;
                         case("RANDOM_SPREAD"):
                             options.setAggressionSetting(AggressionSetting.RANDOM_SPREAD);
+                            System.out.println("aggression setting: RANDOM_SPREAD");
                             break;
                         case("CLOSE_TO_VALUE"):
                             options.setAggressionSetting(AggressionSetting.CLOSE_TO_VALUE);
+                            System.out.println("aggression setting: CLOSE_TO_VALUE");
                             break;
                     }
                 }
             }
             else if (arg.equalsIgnoreCase("write_swarm_file")){
                 options.setWriteSwarmFile(true);
+                System.out.println("Writing swarm file");
             }
             else if(arg.equalsIgnoreCase("write_log_file")){
                 options.setWriteLogFile(true);
+                System.out.println("Writing log file");
             }
         }
         return options;

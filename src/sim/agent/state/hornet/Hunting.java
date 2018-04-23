@@ -11,13 +11,15 @@ import java.util.Random;
 
 public class Hunting extends State {
 
-    Bee targetBee;
+    private Bee targetBee;
+    private int searchIterations;
     /**
      * Searching state of the hornet
      * @param parent
      */
     public Hunting(Agent parent) {
         super(parent);
+        this.searchIterations = 0;
     }
 
     /**
@@ -89,7 +91,13 @@ public class Hunting extends State {
                 proximityCount++;
             }
         }
-        return proximityCount <= Defaults.HORNET_TARGET_THRESHOLD;
+        if(proximityCount <= Defaults.HORNET_TARGET_THRESHOLD + searchIterations){
+            return true;
+        }
+        else{
+            searchIterations++;
+            return false;
+        }
     }
 
 }

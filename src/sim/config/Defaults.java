@@ -71,5 +71,7 @@ public class Defaults {
             "\tWrite swarm file:" + br +
             "\t\tsyntax: \"write_swarm_file\"" + br +
             "\tWrite log file:" + br +
-            "\t\tsyntax: \"write_log_file\"" + br;
+            "\t\tsyntax: \"write_log_file\"" + br +
+            "\tChance output location:" + br +
+            "\t\tsyntax: \"filepath:DESIRED_FILEPATH\"" + br;
 }
