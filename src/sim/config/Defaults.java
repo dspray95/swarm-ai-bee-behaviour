@@ -65,7 +65,8 @@ public class Defaults {
             "\t\tsyntax: \"aggression:n\"" + br +
             "\tSet aggression spread:" + br +
             "\t\tsyntax: \"aggression_setting:SETTING\"" + br +
-            "\t\twhere setting is one of the following: \"RANDOM_SPREAD\", \"UNIFORM\", \"CLOSE_TO_VALUE\"" + br +
+            "\t\twhere setting is one of the following: \"RANDOM_SPREAD\", \"UNIFORM\", \"CLOSE_TO_VALUE\", " +
+            "\"FEW_HIGH\", \"MANY_LOW\", \"FEW_HIGH_LOW\""+ br +
             "\tSet tick count:" + br +
             "\t\tsyntax: \"tick_count:n\"" + br +
             "\tWrite swarm file:" + br +
