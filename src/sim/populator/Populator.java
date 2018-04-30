@@ -1,5 +1,7 @@
-package sim;
+package sim.populator;
 
+import sim.Coordinate;
+import sim.Simulation;
 import sim.agent.Agent;
 import sim.agent.Bee;
 import sim.agent.Hornet;
@@ -12,10 +14,14 @@ public class Populator {
 
     Simulation parent;
     Options options;
+    Aggressor aggressor;
 
     public Populator(Simulation parent, Options options){
         this.parent = parent;
         this.options = options;
+        aggressor = new Aggressor(options.getAggressionSetting(),
+                options.getAggression(),
+                options.getSwarmSize());
     }
 
     public void Populate(){
@@ -36,7 +42,7 @@ public class Populator {
                     gettingCoordinate = false;
                 }
             }
-            Bee bee = new Bee(parent, location, getAggression());
+            Bee bee = new Bee(parent, location, aggressor.getAggression());
             parent.getTickListeners().add(bee);
             parent.getSwarm().add(bee);
 
@@ -44,22 +50,5 @@ public class Populator {
         parent.setHornet(new Hornet(parent, new Coordinate(options.getEnvironmentSize()/2, options.getDeploymentArea()/2-50)));
     }
 
-    public double getAggression(){
-        double aggressionVal = options.getAggression();
-        //value may be zero for testing purposes occasionally
-        if(aggressionVal == 0){
-            return 0;
-        }
 
-        switch(options.getAggressionSetting()){
-            case UNIFORM:
-                return aggressionVal;
-            case RANDOM_SPREAD:
-                return ThreadLocalRandom.current().nextDouble(aggressionVal*2);
-            case CLOSE_TO_VALUE:
-                return ThreadLocalRandom.current().nextDouble(aggressionVal/2, aggressionVal*1.5);
-            default:
-                return aggressionVal;
-        }
-    }
 }

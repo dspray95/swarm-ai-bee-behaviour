@@ -6,6 +6,7 @@ import sim.agent.Pheromone;
 import sim.agent.listener.TickListener;
 import sim.agent.state.bee.Working;
 import sim.config.Options;
+import sim.populator.Populator;
 
 import java.util.ArrayList;
 
@@ -40,6 +41,9 @@ public class Simulation {
                 Bee bee = (Bee)listener;
                 if(bee.getState().getClass() == Working.class){
                     this.productivity++;
+                }
+                if(hornet.IsEscaped()){
+                    this.productivity = 0;
                 }
             }
         }
