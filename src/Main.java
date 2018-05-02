@@ -88,6 +88,18 @@ public class Main {
                             options.setAggressionSetting(AggressionSetting.CLOSE_TO_VALUE);
                             System.out.println("aggression setting: CLOSE_TO_VALUE");
                             break;
+                        case("FEW_HIGH"):
+                            options.setAggressionSetting(AggressionSetting.FEW_HIGH);
+                            System.out.println("aggression setting: FEW_HIGH");
+                            break;
+                        case("FEW_HIGH_LOW"):
+                            options.setAggressionSetting(AggressionSetting.FEW_HIGH_LOW);
+                            System.out.println("aggression setting: FEW_HIGH_LOW");
+                            break;
+                        case("MANY_LOW"):
+                            options.setAggressionSetting(AggressionSetting.MANY_LOW);
+                            System.out.println("aggression setting: MANY_LOW");
+                            break;
                     }
                 }
             }

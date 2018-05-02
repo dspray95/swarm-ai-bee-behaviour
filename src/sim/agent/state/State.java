@@ -7,7 +7,7 @@ import sim.config.Defaults;
 
 import java.util.Random;
 
-public abstract  class State {
+public abstract class State {
 
     protected Agent parent;
 
