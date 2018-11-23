@@ -74,6 +74,15 @@ public class Logger {
             case RANDOM_SPREAD:
                 aggressionSetting = "RANDOM_SPREAD";
                 break;
+            case FEW_HIGH:
+                aggressionSetting = "FEW_HIGH";
+                break;
+            case FEW_HIGH_LOW:
+                aggressionSetting = "FEW_HIGH_LOW";
+                break;
+            case MANY_LOW:
+                aggressionSetting = "MANY_LOW";
+                break;
         }
 
         for(Agent agent : sim.getSwarm()){

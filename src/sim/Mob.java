@@ -31,7 +31,7 @@ public class Mob extends ArrayList<Agent> implements TickListener {
                     n = mob size
         So Temperature
         = T1 + ((n/5)^2 + T1 - T1)/T1
-        = T1 + (n/5)^2 / T1
+        = T1 + ((n/5)^2 / T1)
          */
         temperature = Defaults.BASE_TEMPERATURE + (((mobSize/2)*(mobSize/2) - temperature)/Defaults.BASE_TEMPERATURE);
 
