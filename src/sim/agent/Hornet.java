@@ -34,6 +34,18 @@ public class Hornet extends Agent {
         this.attackPoints = 3;
     }
 
+    /**
+     * Boolean check to see if the hornet agent has left the simulation environment.
+     * In order to be considered escaped the hornet must:
+     * <ul>
+     *     <li>Have hp > 0 (i.e not be dead)</li>
+     *     <li>Either their location x or y position must be outside of the environment bounds (taking a buffer zone
+     *     into account)</li>
+     * </ul>
+     * If both conditions return true the hornet has escaped, otherwise it has not.
+     * This is used in determining whether the simulation should end.
+     * @return boolean True if the hornet has left the simulation environment, else false.
+     */
     public boolean IsEscaped()
     {
         /*if hornet position is:

@@ -5,23 +5,36 @@ import sim.agent.Agent;
 import sim.agent.Hornet;
 import sim.config.Options;
 
+/**
+ * The Actuator handles all operations pertaining to movement of an agent.
+ * Each actuator must have one and only one parent Agent object.
+ */
 public class Actuator {
 
     Agent parent;
     Options options;
 
+    /**
+     * Class constructor.
+     * The agent that one instance of the Actuator class moves is defined by the parent parameter.
+     * Options are used in determining the size of each movement step.
+     * @param parent
+     */
     public Actuator(Agent parent){
         this.parent = parent;
         this.options = parent.getOptions();
     }
 
     /**
-     * Attempts to move the parent Agent to the target location
-     * @param target location to move to
-     * @return true if movement is possible, false otherwise
+     * Attempts to move the parent Agent to the target location.
+     * This is achieved by checking if the target location is already occupied (via the parents perceptor)
+     * If it is occupied, we cannot move, otherwise we move. This is all providing the parent agent is not currently
+     * dead.
+     * @param target location to attempt a move to
+     * @return boolean, true if movement is possible, false otherwise
      */
     public boolean Move(Coordinate target){
-        //Do not attempt to move if the parent is dead - simply return - probably a more efficient way to achieve this
+        //Do not attempt to move if the parent is dead - simply return
         if(parent.getHP() <= 0){
             return true;
         }
