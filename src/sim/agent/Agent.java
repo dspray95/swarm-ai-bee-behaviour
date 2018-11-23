@@ -47,7 +47,7 @@ public abstract class Agent implements TickListener {
     protected boolean pheromoneSet;
 
     /**
-     * Clas constructor
+     * Class constructor
      * Assigns the parent simulation and a location.
      * Additionally, acquires options from the parent for use in defining the cohesion rate of
      * the swarm. Creates a perceptor and actuator object for agent use in interacting with the world
@@ -111,7 +111,7 @@ public abstract class Agent implements TickListener {
     }
 
     /**
-     * Add stochasticity to the agents attack strength based on the
+     * Add a stochastic element to the agents attack strength based on the
      * attackPoints variable of the agent.
      * @return int, a random value based on the attack points of the agent
      */

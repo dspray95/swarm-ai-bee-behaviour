@@ -8,6 +8,9 @@ import static sim.config.AggressionSetting.CLOSE_TO_VALUE;
 import static sim.config.AggressionSetting.RANDOM_SPREAD;
 import static sim.config.AggressionSetting.UNIFORM;
 
+/**
+ * Controls aggression spread within a swarm
+ */
 public class Aggressor {
 
     AggressionSetting setting;
