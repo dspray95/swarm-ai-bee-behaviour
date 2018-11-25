@@ -28,7 +28,7 @@ public abstract class State {
     /**
      * Abstract function to be implemented by child classes since the target will vary significantly on a
      * state-by-state basis, called by the parent agent.
-     * @return
+     * @return Absolute location to which the agent will move
      */
     public abstract Coordinate GetTarget();
 

@@ -22,9 +22,10 @@ public class Mobbing extends State {
     private boolean leaving;
 
     /**
-     *
-     * @param parent
-     * @param target
+     * Class constructor.
+     * Assigns the parent agent to a mob.
+     * @param parent The agent currently using this state
+     * @param target The target agent which the parent agent will attempt to form a mob around
      */
     public Mobbing(Agent parent, Agent target) {
         super(parent);
@@ -36,12 +37,18 @@ public class Mobbing extends State {
         }
     }
 
+    /**
+     * The GetTarget function in the mobbing behaviour focuses on finding a valid location to which the agent should move
+     * based on forming a ball around the perceived threat.
+     * If the temperature is too high for the bee it will attempt to leave.
+     * This is achieved by setting the agents goal a short distance away from the centre of the mob. Upon reaching its goal
+     * distance from the mob the agent will return to a guarding state and stay near the threat.
+     * If the target is dead the agent will attempt to disperse and return to a working state.
+     * @return Absolute location to which the agent will attempt to move
+     */
     @Override
     public Coordinate GetTarget() {
-        /*
-        If the temp is too high, try to leave
-         */
-        parent.setTemperature(mob.getTemperature());
+        //Check to see if the target is dead so the agent can stop mobbing
         if(target.getHP() <= 0){
             if(parent.getLocation().DistanceTo(target.getLocation()) > parent.getOptions().getPerceptionDistance()/2){
                 parent.setState(new Working(parent, parent.getOptions().getCohesionRate()));
@@ -51,6 +58,8 @@ public class Mobbing extends State {
                 return GetBestVector(LeaveMobVector());
             }
         }
+        //Here we calculate if we have successfully left the mob. If we have we move into the guarding state,
+        //otherwise we return the best current vector for leaving.
         if(leaving){
             if(parent.getLocation().DistanceTo(target.getLocation()) > parent.getOptions().getPerceptionDistance()/2){
                 mob.modifyCurrentlyLeaving(-1);
@@ -63,7 +72,8 @@ public class Mobbing extends State {
                 return GetBestVector(LeaveMobVector());
             }
         }
-
+        //If the temp is too high, try to leave
+        parent.setTemperature(mob.getTemperature());
         if(parent.getTemperature() >= Defaults.BEE_LETHAL_TEMPERATURE - 2){
             Coordinate leavingVector = LeaveMobVector();
             if(GetBestVector(leavingVector).Equals(parent.getLocation())){
@@ -83,6 +93,11 @@ public class Mobbing extends State {
         }
     }
 
+    /**
+     * Get a vector in the opposite direction of the centre of the mob, thus giving the agent a target that will lead
+     * them away from the threat.
+     * @return Coordinate, the sum of a vector facing away from the threat and parent's current location
+     */
     public Coordinate LeaveMobVector(){
         //get the vector to center of the mob, will be the location of the hornet
         Coordinate centerOfMob = VectorToTarget(parent.getLocation(), parent.getPerceptor().getThreat().getLocation());
@@ -94,7 +109,7 @@ public class Mobbing extends State {
         if (centerOfMob .Y() != 0) {
             leaveVector.setY(centerOfMob .Y() * -1);
         }
-
+        //Sum for absolute location
         return new Coordinate(leaveVector.X() + parent.getLocation().X(), leaveVector.Y() + parent.getLocation().Y());
     }
 }
